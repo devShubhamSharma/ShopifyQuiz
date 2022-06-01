@@ -53,7 +53,7 @@ include('../user/snippet/header.php');
                 <div class="form-check my-2 text-white-50">
                     <input type="radio" name="q1" value="B">
                     <label class="form-check-label">Featured Products</label>
-                </div>
+                </div>  
                 <div class="form-check my-2 text-white-50">
                     <input type="radio" name="q1" value="C">
                     <label class="form-check-label">Slideshow</label>
