@@ -42,12 +42,14 @@ $config = include('../config.php') ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<?= $config->assets_url . 'custom.js' ?>"></script>
     <script type="text/javascript">
-        // window.addEventListener('beforeunload', function(e) {
-        //     e.preventDefault(); 
-        //     e.returnValue = 'Please do not reload page, all your work will deleted';
-        // });
+        const onConfirmRefresh = function(event) {
+            event.preventDefault();
+            return event.returnValue = "Are you sure you want to leave the page?";
+        }
 
-        
+        window.addEventListener("beforeunload", onConfirmRefresh, {
+            capture: true
+        });
     </script>
 
 </body>

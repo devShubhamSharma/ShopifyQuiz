@@ -101,7 +101,8 @@ function setCookie() {
     localStorage.setItem('show', currentDate+"true");
 }
 
-if(performance.navigation.type == performance.navigation.TYPE_RELOAD){
+if(PerformanceNavigationTiming.type == PerformanceNavigationTiming.TYPE_RELOAD){
+    
     if(localStorage.getItem('show').includes(currentDate+"true")){
         quiz_section.remove();
         document.querySelector(".countdown").style.display = "none";

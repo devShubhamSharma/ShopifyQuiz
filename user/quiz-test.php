@@ -5,7 +5,6 @@ echo "</pre>";
 if (isset($_SESSION['start_test'])) {
     unset($_SESSION['start_test']);
     $_POST = array();
-    echo 'success msg';
 } else {
     $_SESSION['start_test'] = true;
     $_SESSION['email_id'] = $_POST['email'];
@@ -14,8 +13,9 @@ if (isset($_SESSION['start_test'])) {
 // if ( !isset($_SESSION['start_test'])  ) {
 
 // }
-include('../database.php');
+
 include('../user/snippet/header.php');
+include('../user/UserCRUD.php');
 ?>
 <!--Top Section-->
 <div class="intro py-3 b-white text-center">

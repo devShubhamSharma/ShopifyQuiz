@@ -1,5 +1,5 @@
 <?php session_start();
-include('../database.php');
+
 include('../user/snippet/header.php');
 ?>
 <!--Top Section-->

@@ -6,10 +6,7 @@
 
 
 
-let email = "",
-  passcode = "";
-let emailErr = false,
-  passcodeErr = false;
+let email = "",passcode = "", emailErr = false, passcodeErr = false;
 $(document).on("click", "#submit-test-login-form", function (e) {
   e.preventDefault();
   email = $("#email").val().trim();
