@@ -9,12 +9,36 @@
 let email = "",passcode = "", emailErr = false, passcodeErr = false;
 $(document).on("click", "#submit-test-login-form", function (e) {
   e.preventDefault();
+  let thisInst=$(this);
   email = $("#email").val().trim();
   passcode = $("#passcode").val().trim();
   passcodeErr = validatePasscode(passcode, "passcode");
   emailErr = validateEmail(email, "email");
   if (emailErr === true && passcodeErr === true) {
-    $("#test-login-form").submit();
+    let formData=$("#test-login-form").serialize();
+    console.log(formData);
+    $.ajax({
+        method:"POST",
+        url:"/ShopifyQuiz/user/ajaxcall.php",
+        data:formData,
+        beforeSend: function(){
+          thisInst.prop("disabled", true);
+          thisInst.html("<i class='fa fa-spinner fa-spin '></i> Logging...");
+        },
+        success:function(data){
+          console.log(data);
+          data=JSON.parse(data)
+          thisInst.prop("disabled", true).html("Login success...");
+          if(data.status=='success'){
+            window.location='quiz-test.php'
+          }else{
+              $(".login-error").html(data.message).removeClass("d-none").addClass("d-block"); 
+              thisInst.prop("disabled", false).html("Submit");           
+          }
+        }
+
+    });
+    //$("#test-login-form").submit();
   }
 });
 function validateEmail(email, id) {
@@ -71,3 +95,4 @@ function validatePasscode(passcode, id) {
     return true;
   }
 }
+

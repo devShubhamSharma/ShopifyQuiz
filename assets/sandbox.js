@@ -101,10 +101,11 @@ function setCookie() {
     localStorage.setItem('show', currentDate+"true");
 }
 
-if(PerformanceNavigationTiming.type == PerformanceNavigationTiming.TYPE_RELOAD){
-    
+if(performance.getEntriesByType("navigation")[0].type === 'reload'){
+    console.log(performance.getEntriesByType("navigation")[0].type);
     if(localStorage.getItem('show').includes(currentDate+"true")){
-        quiz_section.remove();
+        //quiz_section.remove();
+       // window.location='login.php';
         document.querySelector(".countdown").style.display = "none";
         let score = 0;
     const userAnswers = [handle_form.q1.value,handle_form.q2.value,handle_form.q3.value,handle_form.q4.value,handle_form.q5.value,handle_form.q6.value,handle_form.q7.value,handle_form.q8.value,handle_form.q9.value,handle_form.q10.value,handle_form.q11.value,handle_form.q12.value,handle_form.q13.value,handle_form.q14.value,handle_form.q15.value,handle_form.q16.value,handle_form.q17.value,handle_form.q18.value,handle_form.q19.value,handle_form.q20.value,handle_form.q21.value,handle_form.q22.value,handle_form.q23.value,handle_form.q24.value,handle_form.q25.value,handle_form.q26.value,handle_form.q27.value,handle_form.q28.value,handle_form.q29.value,handle_form.q30.value,handle_form.q31.value,handle_form.q32.value,handle_form.q33.value,handle_form.q34.value,handle_form.q35.value,handle_form.q36.value,handle_form.q37.value,handle_form.q38.value,handle_form.q39.value,handle_form.q40.value,handle_form.q41.value,handle_form.q42.value,handle_form.q43.value,handle_form.q44.value,handle_form.q45.value,handle_form.q46.value,handle_form.q47.value,handle_form.q48.value,handle_form.q49.value,handle_form.q50.value];

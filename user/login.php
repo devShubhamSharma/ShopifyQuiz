@@ -1,4 +1,5 @@
 <?php session_start();
+session_destroy();
 $config = include('../config.php') ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,7 @@ $config = include('../config.php') ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= $config->assets_url . 'bootstrap.min.css' ?>">
     <link rel="stylesheet" href="<?= $config->assets_url . 'custom.css' ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Liquid Quiz</title>
 </head>
 
@@ -20,6 +22,7 @@ $config = include('../config.php') ?>
                 <div class="card-body text-primary">
                     <h5 class="card-title text-center">Liquid Quiz</h5>
                     <form id="test-login-form" method="post" action="quiz-test.php">
+                        <input type="hidden" name="action" value="user/login">
                         <div class="form-outline mb-4">
                             <label class="form-label" for="email">Email your email</label>
                             <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" />
@@ -31,9 +34,11 @@ $config = include('../config.php') ?>
                             <div id="error-passcode"></div>
                         </div>
                         <button class="btn btn-primary btn-block mb-4" id="submit-test-login-form" type="submit">
-                            <i class="fas fa-spinner fa-spin" style="display:block;"></i>
                             <span class="btn-text">Submit</span>
                         </button>
+                        <div class="alert alert-danger login-error d-none">
+                            
+                        </div>
                     </form>
                 </div>
             </div>
@@ -42,14 +47,13 @@ $config = include('../config.php') ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<?= $config->assets_url . 'custom.js' ?>"></script>
     <script type="text/javascript">
-        const onConfirmRefresh = function(event) {
-            event.preventDefault();
-            return event.returnValue = "Are you sure you want to leave the page?";
-        }
-
-        window.addEventListener("beforeunload", onConfirmRefresh, {
-            capture: true
-        });
+        // const onConfirmRefresh = function(event) {
+        //     event.preventDefault();
+        //     return event.returnValue = "Are you sure you want to leave the page?";
+        // }
+        //  window.addEventListener("beforeunload", onConfirmRefresh, {
+        //     capture: true
+        // });
     </script>
 
 </body>

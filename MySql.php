@@ -44,7 +44,7 @@ class MySQL extends Safe
     {
         $this->connection = mysqli_connect($this->host, $this->user, $this->password, $this->database);
         if (!$this->connection) {
-            $e                  = 'Failed to connect to DB';
+            $e = 'Failed to connect to DB';
             $this->setError($e);
             echo "Your exception handling" . $e;
             return false;
@@ -128,7 +128,7 @@ class MySQL extends Safe
             return false;
         }
         if (!is_bool($execute)) {
-            while ($row = mysqli_fetch_array($execute)) {
+            while ($row = mysqli_fetch_array($execute, MYSQLI_ASSOC)) {
                 $return[]   = $row;
             }
         }
@@ -152,7 +152,7 @@ class MySQL extends Safe
         $rows       = $this->sqlWithArray($this->connection, $rows);
 
         $keys       = "(" . implode(" ,", array_keys($rows)) . ")";
-        $values     = " VALUES (" . implode(", " , array_values($rows)) . ")";
+        $values     = " VALUES (" . implode(", ", array_values($rows)) . ")";
 
         $query      = "INSERT INTO $table $keys $values";
 
@@ -168,9 +168,9 @@ class MySQL extends Safe
 
             $row = $this->sqlWithArray($this->connection, $row);
             if ($keys === NULL) {
-                $keys   = "(" . implode(" ," , array_keys($row)) . ")";
+                $keys   = "(" . implode(" ,", array_keys($row)) . ")";
             }
-            $values .= " (" . implode(", " , array_values($row)) . " ) ,";
+            $values .= " (" . implode(", ", array_values($row)) . " ) ,";
         }
         $lastChar = substr($values, -1);
 

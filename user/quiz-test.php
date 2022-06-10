@@ -1,26 +1,20 @@
-<?php session_start();
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-if (isset($_SESSION['start_test'])) {
-    unset($_SESSION['start_test']);
-    $_POST = array();
-} else {
-    $_SESSION['start_test'] = true;
-    $_SESSION['email_id'] = $_POST['email'];
-    $_POST = array();
-}
+<?php 
+
 // if ( !isset($_SESSION['start_test'])  ) {
 
 // }
 
 include('../user/snippet/header.php');
-include('../user/UserCRUD.php');
+
 ?>
 <!--Top Section-->
 <div class="intro py-3 b-white text-center">
     <div class="container">
         <h2 class="text-primary display-3 my-4">Liquid Quiz</h2>
+        <?php if (isset($_SESSION['user_data']['first_name'])) {?>
+        <h2 class="text-primary display-6 my-1">Welcome: <?=ucfirst($_SESSION['user_data']['title']).' '.ucfirst($_SESSION['user_data']['first_name']).' '.ucfirst($_SESSION['user_data']['middle_name']).' '.ucfirst($_SESSION['user_data']['last_name'])?> </h2><br />
+        <?php }?> 
+
     </div>
 </div>
 
@@ -986,6 +980,7 @@ include('../user/UserCRUD.php');
         </form>
     </div>
 </div>
-<div>hhhh: <?= $_SESSION['start_test'] ?></div>
-<div>hhhh: <?= $_SESSION['email_id'] ?></div>
+<script type="text/javascript">
+       
+    </script>
 <?php include('../user/snippet/footer.php'); ?>
