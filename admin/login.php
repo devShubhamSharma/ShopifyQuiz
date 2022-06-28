@@ -2,61 +2,60 @@
 session_destroy();
 $config = include('../config.php') ?>
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Simpla Admin | Sign In</title>
-<link rel="stylesheet" href="<?= $config->admin_assets_url .'css/reset.css'?>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?= $config->admin_assets_url .'css/style.css'?>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?= $config->admin_assets_url .'css/invalid.css" type="text/css'?>" media="screen" />	
-<script type="text/javascript" src="<?= $config->admin_assets_url .'scripts/jquery-1.3.2.min.js'?>"></script>
-<script type="text/javascript" src="<?= $config->admin_assets_url .'scripts/simpla.jquery.configuration.js'?>"></script>
-<script type="text/javascript" src="<?= $config->admin_assets_url .'scripts/facebox.js'?>"></script>
-<script type="text/javascript" src="<?= $config->admin_assets_url .'scripts/jquery.wysiwyg.js'?>"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= $config->assets_url . 'bootstrap.min.css' ?>">
+    <link rel="stylesheet" href="<?= $config->assets_url . 'custom.css' ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>admin Login | Liquid Quiz</title>
 </head>
-  
-	<body id="login">
-		
-		<div id="login-wrapper" class="png_bg">
-			<div id="login-top">
-			
-				<h1>Simpla Admin</h1>
-				<!-- Logo (221px width) -->
-				<img id="logo" src="<?= $config->admin_assets_url .'images/logo.png'?>" alt="Simpla Admin logo" />
-			</div> <!-- End #logn-top -->
-			
-			<div id="login-content">
-				
-				<form action="index.html">
-				
-					<div class="notification information png_bg">
-						<div>
-							Just click "Sign In". No password needed.
-						</div>
-					</div>
-					
-					<p>
-						<label>Username</label>
-						<input class="text-input" type="text" />
-					</p>
-					<div class="clear"></div>
-					<p>
-						<label>Password</label>
-						<input class="text-input" type="password" />
-					</p>
-					<div class="clear"></div>
-					<p id="remember-password">
-						<input type="checkbox" />Remember me
-					</p>
-					<div class="clear"></div>
-					<p>
-						<input class="button" type="submit" value="Sign In" />
-					</p>
-					
-				</form>
-			</div> <!-- End #login-content -->
-			
-		</div> <!-- End #login-wrapper -->
-  </body>
+
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center mt-5">
+            <div class="card" style="width: 30rem;">
+                <!-- <img src="<? //=$config->assets_url.'uploads/images/default_qiuz.jpeg'
+                                ?>" class="card-img-top" alt="..."> -->
+                <div class="card-body text-primary">
+                    <h5 class="card-title text-center">Liquid Quiz | Admin Login</h5>
+                    <form id="admin_login_form" method="post">
+                        <input type="hidden" name="action" value="admin/login">
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email your email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" />
+                            <div id="error-email"></div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="text" id="password" name="password" class="form-control" placeholder="Enter password" />
+                            <div id="error-password"></div>
+                        </div>
+                        <button class="btn btn-primary btn-block mb-4" id="submit_admin_login_form" type="submit">
+                            <span class="btn-text">Submit</span>
+                        </button>
+                        <div class="alert alert-danger login-error d-none">
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="<?= $config->admin_assets_url . 'scripts/admin.js' ?>"></script>
+    <script type="text/javascript">
+        // const onConfirmRefresh = function(event) {
+        //     event.preventDefault();
+        //     return event.returnValue = "Are you sure you want to leave the page?";
+        // }
+        //  window.addEventListener("beforeunload", onConfirmRefresh, {
+        //     capture: true
+        // });
+    </script>
+
+</body>
+
 </html>

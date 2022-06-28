@@ -4,21 +4,21 @@
  */
 
 let email = "",
-    passcode = "",
+    password = "",
     emailErr = false,
     passcodeErr = false;
-$(document).on("click", "#submit-test-login-form", function(e) {
+$(document).on("click", "#submit_admin_login_form", function(e) {
     e.preventDefault();
     let thisInst = $(this);
     email = $("#email").val().trim();
-    passcode = $("#passcode").val().trim();
-    passcodeErr = validatePasscode(passcode, "passcode");
+    password = $("#password").val().trim();
+    passcodeErr = validatePasscode(password, "password");
     emailErr = validateEmail(email, "email");
     if (emailErr === true && passcodeErr === true) {
-        let formData = $("#test-login-form").serialize();
+        let formData = $("#admin_login_form").serialize();
         $.ajax({
             method: "POST",
-            url: "/ShopifyQuiz/user/ajaxcall.php",
+            url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
             data: formData,
             beforeSend: function() {
                 thisInst.prop("disabled", true);
@@ -29,7 +29,7 @@ $(document).on("click", "#submit-test-login-form", function(e) {
                 data = JSON.parse(data);
                 thisInst.prop("disabled", true).html("Login success...");
                 if (data.status == "success") {
-                    window.location = "quiz-test.php";
+                    window.location = "dashboard.php";
                 } else {
                     $(".login-error")
                         .html(data.message)
@@ -76,8 +76,8 @@ function validateEmail(email, id) {
     }
 }
 
-function validatePasscode(passcode, id) {
-    if (passcode === "") {
+function validatePasscode(password, id) {
+    if (password === "") {
         $("#" + id)
             .removeClass("is-valid")
             .addClass("is-invalid")

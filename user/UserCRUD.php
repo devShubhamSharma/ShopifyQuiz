@@ -7,7 +7,6 @@ class UserCRUD extends MySQL
     public function __construct()
     {
         parent::__construct();
-       
     }
     public function userLogin($data)
     {
@@ -20,11 +19,11 @@ class UserCRUD extends MySQL
                 $this->passcode = true;
             }
         }
-        if (count($userData) > 0 && $this->passcode) {
-            $_SESSION['login']=true;
-            $_SESSION['email']=$data['email'];
-            $_SESSION['user_data']=$userData[0];
-            
+        if (count($userData) > 0 && $this->passcode && $data["user_type"] == $userData[0]['user_type']) {
+            $_SESSION['login'] = true;
+            $_SESSION['email'] = $data['email'];
+            $_SESSION['user_data'] = $userData[0];
+
             $this->response = [
                 "status" => "success",
                 "message" => "Login Successfully."

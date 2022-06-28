@@ -578,11 +578,11 @@ form input[type="radio"] {
 
 body#login {
                 color: #fff;
-                background: #222 url('../images/bg-login.gif');
+                background: #222 /*url('../images/bg-login.gif')*/;
 				}
 				
 #login-wrapper {
-                background: url('../images/bg-login-top.png') top left repeat-x;
+                /* background: url('../images/bg-login-top.png') top left repeat-x; */
 				}
 
 #login-wrapper #login-top {
