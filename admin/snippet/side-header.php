@@ -1,129 +1,45 @@
-<div id="sidebar"><div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
+<div class="container-fluid page-body-wrapper">
+	<!-- partial:partials/_sidebar.html -->
+	<nav class="sidebar sidebar-offcanvas" id="sidebar">
+		<ul class="nav">
+			<li class="nav-item nav-category">Main</li>
+			<li class="nav-item">
+				<a class="nav-link" href="<?= $config->admin_url .'dashboard.php'?>">
+					<span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
+					<span class="menu-title">Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+					<span class="icon-bg"><i class="mdi mdi-crosshairs-gps menu-icon"></i></span>
+					<span class="menu-title">Questions</span>
+					<i class="menu-arrow"></i>
+				</a>
+				<div class="collapse" id="ui-basic">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item active"> <a class="nav-link" href="<?= $config->admin_url .'questions/list.php'?>">List</a></li>
+						<li class="nav-item"> <a class="nav-link" href="<?= $config->admin_url .'questions/add.php'?>">Add</a></li>
+						<li class="nav-item"> <a class="nav-link" href="<?= $config->admin_url .'questions/edit.php'?>">Edit</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item sidebar-user-actions">
+				<div class="sidebar-user-menu">
+					<a href="#" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
+						<span class="menu-title">Settings</span>
+					</a>
+				</div>
+			</li>
 			
-			<h1 id="sidebar-title"><a href="#">Simpla Admin</a></h1>
-		  
-			<!-- Logo (221px wide) -->
-			<a href="#"><img id="logo" src="<?= $config->admin_assets_url .'images/logo.png'?>" alt="Simpla Admin logo" /></a>
-		  
-			<!-- Sidebar Profile links -->
-			<div id="profile-links">
-				Hello, <a href="#" title="Edit your profile">John Doe</a>, you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br />
-				<br />
-				<a href="#" title="View the Site">View the Site</a> | <a href="#" title="Sign Out">Sign Out</a>
-			</div>        
-			
-			<ul id="main-nav">  <!-- Accordion Menu -->
-				
-				<li>
-					<a href="http://www.google.com/" class="nav-top-item no-submenu"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
-						Dashboard
-					</a>       
-				</li>
-				
-				<li> 
-					<a href="#" class="nav-top-item current"> <!-- Add the class "current" to current menu item -->
-					Articles
-					</a>
-					<ul>
-						<li><a href="#">Write a new Article</a></li>
-						<li><a class="current" href="#">Manage Articles</a></li> <!-- Add class "current" to sub menu items also -->
-						<li><a href="#">Manage Comments</a></li>
-						<li><a href="#">Manage Categories</a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<a href="#" class="nav-top-item">
-						Pages
-					</a>
-					<ul>
-						<li><a href="#">Create a new Page</a></li>
-						<li><a href="#">Manage Pages</a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<a href="#" class="nav-top-item">
-						Image Gallery
-					</a>
-					<ul>
-						<li><a href="#">Upload Images</a></li>
-						<li><a href="#">Manage Galleries</a></li>
-						<li><a href="#">Manage Albums</a></li>
-						<li><a href="#">Gallery Settings</a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<a href="#" class="nav-top-item">
-						Events Calendar
-					</a>
-					<ul>
-						<li><a href="#">Calendar Overview</a></li>
-						<li><a href="#">Add a new Event</a></li>
-						<li><a href="#">Calendar Settings</a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<a href="#" class="nav-top-item">
-						Settings
-					</a>
-					<ul>
-						<li><a href="#">General</a></li>
-						<li><a href="#">Design</a></li>
-						<li><a href="#">Your Profile</a></li>
-						<li><a href="#">Users and Permissions</a></li>
-					</ul>
-				</li>      
-				
-			</ul> <!-- End #main-nav -->
-			
-			<div id="messages" style="display: none"> <!-- Messages are shown when a link with these attributes are clicked: href="#messages" rel="modal"  -->
-				
-				<h3>3 Messages</h3>
-			 
-				<p>
-					<strong>17th May 2009</strong> by Admin<br />
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.
-					<small><a href="#" class="remove-link" title="Remove message">Remove</a></small>
-				</p>
-			 
-				<p>
-					<strong>2nd May 2009</strong> by Jane Doe<br />
-					Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-					<small><a href="#" class="remove-link" title="Remove message">Remove</a></small>
-				</p>
-			 
-				<p>
-					<strong>25th April 2009</strong> by Admin<br />
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.
-					<small><a href="#" class="remove-link" title="Remove message">Remove</a></small>
-				</p>
-				
-				<form action="#" method="post">
-					
-					<h4>New Message</h4>
-					
-					<fieldset>
-						<textarea class="textarea" name="textfield" cols="79" rows="5"></textarea>
-					</fieldset>
-					
-					<fieldset>
-					
-						<select name="dropdown" class="small-input">
-							<option value="option1">Send to...</option>
-							<option value="option2">Everyone</option>
-							<option value="option3">Admin</option>
-							<option value="option4">Jane Doe</option>
-						</select>
-						
-						<input class="button" type="submit" value="Send" />
-						
-					</fieldset>
-					
-				</form>
-				
-			</div> <!-- End #messages -->
-			
-		</div></div> <!-- End #sidebar -->
+			<li class="nav-item sidebar-user-actions">
+				<div class="sidebar-user-menu">
+					<a href="#" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+						<span class="menu-title">Log Out</span></a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<!-- partial -->
+	
+<div class="main-panel">
+	

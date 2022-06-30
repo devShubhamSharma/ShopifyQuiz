@@ -1,2 +1,0 @@
-RewriteEngine On
-Redirect http://localhost/ShopifyQuiz/admin/index.php http://localhost/ShopifyQuiz/admin/login.php

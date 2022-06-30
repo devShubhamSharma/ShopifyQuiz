@@ -8,6 +8,7 @@ return (object)array(
     "password" => "password",
     "root_url" => dirname(__FILE__,1),
     "assets_url" => "http://localhost/ShopifyQuiz/assets/",
-    "admin_assets_url" => "http://localhost/ShopifyQuiz/admin/resources/"
+    "admin_assets_url" => "http://localhost/ShopifyQuiz/admin/assets/",
+    "admin_url" => "http://localhost/ShopifyQuiz/admin/"
 
 );

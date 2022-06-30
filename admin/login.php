@@ -45,7 +45,7 @@ $config = include('../config.php') ?>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="<?= $config->admin_assets_url . 'scripts/admin.js' ?>"></script>
+    <script src="<?= $config->admin_assets_url . 'js/admin.js' ?>"></script>
     <script type="text/javascript">
         // const onConfirmRefresh = function(event) {
         //     event.preventDefault();

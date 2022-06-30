@@ -1,27 +1,103 @@
 <?php session_start();
-$config = include('../config.php');
-$aa = explode("/", $_SERVER['PHP_SELF']);
-if ($aa[count($aa) - 1] === 'index.php') {
+$file_self = explode("/", $_SERVER['PHP_SELF']);
+
+if ($file_self[count($file_self) - 1] === 'index.php') {
         header("Location: login.php");
 }
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
+        header("Location: login.php");
+}
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <title>Simpla Admin</title>
-        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'css/reset.css' ?>" type="text/css" media="screen" />
-        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'css/style.css' ?>" type="text/css" media="screen" />
-        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'css/invalid.css' ?>" type="text/css" media="screen" />
-        <script type="text/javascript" src="<?= $config->admin_assets_url . 'scripts/jquery-1.3.2.min.js' ?>"></script>
-        <script type="text/javascript" src="<?= $config->admin_assets_url . 'scripts/simpla.jquery.configuration.js' ?>"></script>
-        <script type="text/javascript" src="<?= $config->admin_assets_url . 'scripts/facebox.js' ?>"></script>
-        <script type="text/javascript" src="<?= $config->admin_assets_url . 'scripts/jquery.wysiwyg.js' ?>"></script>
-        <script type="text/javascript" src="<?= $config->admin_assets_url . 'scripts/jquery.datePicker.js' ?>"></script>
-        <script type="text/javascript" src="<?= $config->admin_assets_url . 'scripts/jquery.date.js' ?>"></script>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Connect Plus</title>
+        <!-- plugins:css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/mdi/css/materialdesignicons.min.css' ?>">
+        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/flag-icon-css/css/flag-icon.min.css' ?>">
+        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/css/vendor.bundle.base.css' ?>">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/font-awesome/css/font-awesome.min.css' ?>" />
+        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' ?>">
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- Layout styles -->
+        <link rel="stylesheet" href="<?= $config->admin_assets_url . 'css/style.css' ?>">
+        <!-- End layout styles -->
+        <link rel="shortcut icon" href="<?= $config->admin_assets_url . 'images/favicon.png' ?>" />
 </head>
 
 <body>
-        <div id="body-wrapper">
+        <div class="container-scroller">
+                <!-- partial:partials/_navbar.html -->
+                <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                                <a class="navbar-brand brand-logo" href="index.html"><img src="<?= $config->admin_assets_url . 'images/logo.svg' ?>" alt="logo" /></a>
+                                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= $config->admin_assets_url . 'images/logo-mini.svg' ?>" alt="logo" /></a>
+                        </div>
+                        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                                        <span class="mdi mdi-menu"></span>
+                                </button>
+                                <ul class="navbar-nav navbar-nav-right">
+
+                                        <li class="nav-item nav-profile dropdown">
+                                                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <div class="nav-profile-img">
+                                                                <img src="<?= $config->admin_assets_url . 'images/faces/face28.png' ?>" alt="image">
+                                                        </div>
+                                                        <div class="nav-profile-text">
+                                                                <p class="mb-1 text-black">Henry Klein</p>
+                                                        </div>
+                                                </a>
+                                                <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="profileDropdown" data-x-placement="bottom-end">
+                                                        <div class="p-3 text-center bg-primary">
+                                                                <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= $config->admin_assets_url . 'images/faces/face28.png' ?>" alt="">
+                                                        </div>
+                                                        <div class="p-2">
+                                                                <h5 class="dropdown-header text-uppercase ps-2 text-dark">User Options</h5>
+                                                                <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                                                        <span>Inbox</span>
+                                                                        <span class="p-0">
+                                                                                <span class="badge badge-primary">3</span>
+                                                                                <i class="mdi mdi-email-open-outline ms-1"></i>
+                                                                        </span>
+                                                                </a>
+                                                                <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                                                        <span>Profile</span>
+                                                                        <span class="p-0">
+                                                                                <span class="badge badge-success">1</span>
+                                                                                <i class="mdi mdi-account-outline ms-1"></i>
+                                                                        </span>
+                                                                </a>
+                                                                <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                                                        <span>Settings</span>
+                                                                        <i class="mdi mdi-settings"></i>
+                                                                </a>
+                                                                <div role="separator" class="dropdown-divider"></div>
+                                                                <h5 class="dropdown-header text-uppercase  ps-2 text-dark mt-2">Actions</h5>
+                                                                <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                                                        <span>Lock Account</span>
+                                                                        <i class="mdi mdi-lock ms-1"></i>
+                                                                </a>
+                                                                <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                                                        <span>Log Out</span>
+                                                                        <i class="mdi mdi-logout ms-1"></i>
+                                                                </a>
+                                                        </div>
+                                                </div>
+                                        </li>
+                                </ul>
+                                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                                        <span class="mdi mdi-menu"></span>
+                                </button>
+                        </div>
+                </nav>

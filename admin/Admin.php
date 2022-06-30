@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once(dirname(__FILE__, 2) . '/MySql.php');
 class Admin extends MySQL
 {
