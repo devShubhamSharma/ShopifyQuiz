@@ -10,10 +10,20 @@ class Questions extends MySQL
     public function listQuestion()
     {
         $this->response = [];
-        $this->questionData = $this->Select("tbl_questions");
-        echo "<pre>";
-        print_r($this->questionData);
-        echo "</pre>";
+        try {
+            $this->questionData = $this->Select("tbl_questions");
+            $this->response = [
+                "status" => "success",
+                "message" => count($this->questionData) . " list fetched.",
+                "data" =>   $this->questionData
+            ];
+        } catch (Exception $e) {
+            $this->response = [
+                "status" => "error",
+                "message" => "Error found: " . $e->getMessage(), "\n"
+            ];
+        }
+        return $this->response;
     }
 
     public function addQuestions($data)

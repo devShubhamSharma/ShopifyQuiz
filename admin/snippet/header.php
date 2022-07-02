@@ -2,10 +2,10 @@
 $file_self = explode("/", $_SERVER['PHP_SELF']);
 
 if ($file_self[count($file_self) - 1] === 'index.php') {
-        header("Location: login.php");
+        header("Location: ".$config->admin_url."login.php");
 }
 if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
-        header("Location: login.php");
+        header("Location: ".$config->admin_url."login.php");
 }
 
 ?>
@@ -33,6 +33,16 @@ if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
         <link rel="stylesheet" href="<?= $config->admin_assets_url . 'css/style.css' ?>">
         <!-- End layout styles -->
         <link rel="shortcut icon" href="<?= $config->admin_assets_url . 'images/favicon.png' ?>" />
+        <script>
+                window.settings = {
+                        'host': `<?= $config->host ?>`,
+                        'base_url': `<?= $config->base_url ?>`,
+                        'root_url': `<?= $config->root_url ?>`,
+                        'assets_url': `<?= $config->assets_url ?>`,
+                        'admin_assets_url': `<?= $config->admin_assets_url ?>`,
+                        'admin_url': `<?= $config->admin_url ?>`,
+                }
+        </script>
 </head>
 
 <body>

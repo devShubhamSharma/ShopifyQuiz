@@ -22,36 +22,47 @@ include('../snippet/side-header.php')
                                     <table class="table table-hover table-bordered">
                                         <thead class="sidebar text-light">
                                             <tr>
-                                                <th style="width:2%;"><input class="" type="checkbox" name="q_ids" id="q_ids" value="1"> #Sr. no </th>
-
+                                                <th style="width:1%;"><input class="" type="checkbox" name="q_ids_parent" id="q_ids_parent"> # </th>
                                                 <th style="width:90%;">Question</th>
-                                                <th style="width:3%;">Status</th>
-                                                <th colspan="2" class="text-center" style="width:5%;">Action</th>
+                                                <th style="width:3%;">Type</th>
+                                                <th style="width:2%;">Status</th>
+                                                <th colspan="2" class="text-center" style="width:3%;">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <div class="spinner-grow text-center" style="width: 3rem; height: 3rem;" role="status">
+                                        <tbody class="html-div-queation">
+                                            <tr class="loader-div">
+                                                <td colspan="5" class="text-center">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
                                                         <span class="visually-hidden">Loading...</span>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td><input type="checkbox" name="q_ids" id="q_ids" value="1"> #1</td>
-                                                <td class=""> test</td>
-                                                <td>
-                                                    <div class="form-switch">
-                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center"><i class="mdi mdi-lead-pencil"></i></td>
-                                                <td class="text-center text-danger"><i class="mdi mdi-delete"></i></td>
-                                            </tr>
-
                                         </tbody>
                                     </table>
+                                    <button class="dropdown-toggle btn btn-primary" id="action-with-selected" href="#" data-bs-toggle="dropdown" aria-expanded="true">
+                                        Action with selected items
+                                    </button>
+                                    <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="action-with-selected" data-x-placement="bottom-end" data-bs-popper="none">
 
+                                        <div class="p-2">
+                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                                <span>Delete</span>
+                                                <span class="p-0">
+                                                    <i class="mdi mdi-delete text-danger"></i>
+                                                </span>
+                                            </a>
+                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                                <span>Set active</span>
+                                                <span class="p-0">
+                                                    <i class="mdi mdi-account-outline ms-1"></i>
+                                                </span>
+                                            </a>
+                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                                <span>Set deactive </span>
+                                                <i class="mdi mdi-settings"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

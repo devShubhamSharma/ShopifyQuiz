@@ -17,4 +17,11 @@ switch ($action) {
         $_POST['user_type'] = 1;
         $resaddQ = $questionsObj->addQuestions($_POST);
         echo json_encode($resaddQ);
+        break;
+    case 'admin/list-question':
+        include_once("../Questions.php");
+        $_POST['user_type'] = 1;
+        $resList = $questionsObj->listQuestion();
+        echo json_encode($resList);
+        break;
 }

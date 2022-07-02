@@ -20,9 +20,9 @@
  <?php
     $js_file = 'add';
     $js_file = substr($file_self[count($file_self) - 1], 0, strpos($file_self[count($file_self) - 1], "."));
-    ?>
-
- <script src="<?= $config->admin_assets_url . 'js/' . $file_self[3] . '/' . $js_file . '.js' ?>" type="text/javascript"></script>
+    if (count($file_self) > 4) { ?>
+     <script src="<?= $config->admin_assets_url . 'js/' . $file_self[3] . '/' . $js_file . '.js' ?>" type="text/javascript"></script>
+ <?php  } ?>
  <script src="<?= $config->admin_assets_url . 'vendors/js/vendor.bundle.base.js' ?>"></script>
  <!-- endinject -->
  <!-- Plugin js for this page -->
@@ -38,6 +38,12 @@
  <!-- Custom js for this page -->
  <script src="<?= $config->admin_assets_url . 'js/dashboard.js' ?>"></script>
  <!-- End custom js for this page -->
+ <script>
+     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+     var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+         return new bootstrap.Tooltip(tooltipTriggerEl)
+     })
+ </script>
  </body>
 
  </html>
