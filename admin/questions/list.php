@@ -18,28 +18,9 @@ include('../snippet/side-header.php')
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-
-                                    <table class="table table-hover table-bordered">
-                                        <thead class="sidebar text-light">
-                                            <tr>
-                                                <th style="width:1%;"><input class="" type="checkbox" name="q_ids_parent" id="q_ids_parent"> # </th>
-                                                <th style="width:90%;">Question</th>
-                                                <th style="width:3%;">Type</th>
-                                                <th style="width:2%;">Status</th>
-                                                <th colspan="2" class="text-center" style="width:3%;">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="html-div-queation">
-                                            <tr class="loader-div">
-                                                <td colspan="5" class="text-center">
-                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-                                                        <span class="visually-hidden">Loading...</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <button class="dropdown-toggle btn btn-primary" id="action-with-selected" href="#" data-bs-toggle="dropdown" aria-expanded="true">
+                                    <div class="alert d-none resopnse-message">ffgfgfg</div>
+                                    <!-- all action dropdown start----->
+                                    <button class="dropdown-toggle btn btn-primary mb-2 d-none" id="action-with-selected" href="#" data-bs-toggle="dropdown" aria-expanded="true">
                                         Action with selected items
                                     </button>
                                     <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="action-with-selected" data-x-placement="bottom-end" data-bs-popper="none">
@@ -63,15 +44,69 @@ include('../snippet/side-header.php')
                                             </a>
                                         </div>
                                     </div>
+                                    <!-- all action dropdown end----->
+                                    <table class="table table-hover table-bordered">
+                                        <thead class="sidebar text-light">
+                                            <tr>
+                                                <th style="width:1%;"><input class="" type="checkbox" name="q_ids_parent" id="q_ids_parent"> # </th>
+                                                <th style="width:90%;">Question</th>
+                                                <th style="width:3%;">Type</th>
+                                                <th style="width:2%;">Status</th>
+                                                <th colspan="2" class="text-center" style="width:3%;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="html-div-queation">
+                                            <tr class="loader-div">
+                                                <td colspan="5" class="text-center">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                                        Open modal
+                                    </button>
+
+
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Modal Heading</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    Modal body..
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Vertically centered modal -->
 
-<?php include('../snippet/footer.php') ?>
+    <?php include('../snippet/footer.php') ?>

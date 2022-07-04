@@ -135,6 +135,42 @@ class MySQL extends Safe
         return $return;
     }
 
+    public function updateExecute($query)
+    {
+        if ($this->CheckConnection() === false) {
+            return false;
+        }
+        $execute = $this->Query($query);
+        if ($execute === false) {
+            $e = 'MySQL query error ' . mysqli_error($this->connection);
+            $this->setError($e);
+
+            echo "Your exception handling" . $e;
+
+            return false;
+        }
+
+        return $execute;
+    }
+
+    public function deleteExecute($query)
+    {
+        if ($this->CheckConnection() === false) {
+            return false;
+        }
+        $execute = $this->Query($query);
+        if ($execute === false) {
+            $e = 'MySQL query error ' . mysqli_error($this->connection);
+            $this->setError($e);
+
+            echo "Your exception handling" . $e;
+
+            return false;
+        }
+
+        return $execute;
+    }
+
     public function Select($table, $condition = "", $sort = "", $order = " ASC ", $clause = " AND ")
     {
         $query = "SELECT * FROM " . $this->noHTMLnoQuotes($this->Value($table));
@@ -197,7 +233,20 @@ class MySQL extends Safe
             $query .= $this->where($condition, $clause);
         }
 
-        return $this->Execute($query);
+        return $this->updateExecute($query);
+    }
+
+    public function Delete($table, array $values)
+    {
+        $field = '';
+        $field_val = '';
+        foreach ($values as $field => $val) {
+            $field = $field;
+            $field_val = (is_array($val)) ? "in (" . implode(" ,", $val) . ")" : " = ".$val;
+        }
+        $query = "DELETE FROM $table WHERE $field $field_val ";
+
+        return $this->deleteExecute($query);
     }
 
     protected function where($condition, $clause)

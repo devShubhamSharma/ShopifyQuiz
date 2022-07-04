@@ -17,6 +17,8 @@
  <!-- container-scroller -->
  <!-- plugins:js -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
+ 
  <?php
     $js_file = 'add';
     $js_file = substr($file_self[count($file_self) - 1], 0, strpos($file_self[count($file_self) - 1], "."));
@@ -42,7 +44,11 @@
      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
      var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
          return new bootstrap.Tooltip(tooltipTriggerEl)
-     })
+     });
+    //  var myModal = new bootstrap.Modal($("#myModal"), {});
+    //  document.onreadystatechange = function() {
+    //      myModal.show();
+    //  };
  </script>
  </body>
 
