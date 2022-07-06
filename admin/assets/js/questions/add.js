@@ -51,7 +51,7 @@ $(document).on("click", ".add-question", function(e) {
                 data = JSON.parse(data);
                 thisInst.prop("disabled", true).html("Question added");
                 if (data.status == "success") {
-                    $(".add-question-message").parent().addClass("alert-success").removeClass("d-none text-danger");
+                    $(".add-question-message").parent().addClass("alert-success").removeClass("d-none alert-danger");
                     $(".add-question-message").html(data.message);
                     thisInst.prop("disabled", false).html("Add Question");
                 } else {

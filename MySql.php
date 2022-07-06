@@ -232,7 +232,6 @@ class MySQL extends Safe
         if (!empty($condition)) {
             $query .= $this->where($condition, $clause);
         }
-
         return $this->updateExecute($query);
     }
 

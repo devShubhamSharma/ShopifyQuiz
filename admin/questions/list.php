@@ -18,34 +18,34 @@ include('../snippet/side-header.php')
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="alert d-none resopnse-message">ffgfgfg</div>
+                                    <div class="alert d-none resopnse-message"> </div>
                                     <!-- all action dropdown start----->
                                     <button class="dropdown-toggle btn btn-primary mb-2 d-none" id="action-with-selected" href="#" data-bs-toggle="dropdown" aria-expanded="true">
                                         Action with selected items
                                     </button>
-                                    <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm " aria-labelledby="action-with-selected" data-x-placement="bottom-end" data-bs-popper="none">
+                                    <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm action-all-div" aria-labelledby="action-with-selected" data-x-placement="bottom-end" data-bs-popper="none">
 
                                         <div class="p-2">
-                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between delete-all" href="javascript:void(0)">
                                                 <span>Delete</span>
                                                 <span class="p-0">
                                                     <i class="mdi mdi-delete text-danger"></i>
                                                 </span>
                                             </a>
-                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between change-status-all" data-status-action="set-active" href="javascript:void(0)">
                                                 <span>Set active</span>
                                                 <span class="p-0">
                                                     <i class="mdi mdi-account-outline ms-1"></i>
                                                 </span>
                                             </a>
-                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                            <a class="dropdown-item py-1 d-flex align-items-center justify-content-between change-status-all" data-status-action="set-deactive" href="javascript:void(0)">
                                                 <span>Set deactive </span>
                                                 <i class="mdi mdi-settings"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <!-- all action dropdown end----->
-                                    <table class="table table-hover table-bordered">
+                                    <table class="table table-hover table-bordered list-table">
                                         <thead class="sidebar text-light">
                                             <tr>
                                                 <th style="width:1%;"><input class="" type="checkbox" name="q_ids_parent" id="q_ids_parent"> # </th>
@@ -67,30 +67,25 @@ include('../snippet/side-header.php')
                                     </table>
 
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                                        Open modal
-                                    </button>
-
-
-                                    <!-- The Modal -->
                                     <div class="modal fade" id="myModal">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
 
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Modal Heading</h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
 
                                                 <!-- Modal body -->
                                                 <div class="modal-body">
-                                                    Modal body..
+                                                   Are you sure to delete?
+                                                   <input type="hidden" class="delete-ids" name="delete-ids" value="0">
                                                 </div>
 
                                                 <!-- Modal footer -->
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-danger confirm-delete">Delete</button>
                                                 </div>
 
                                             </div>

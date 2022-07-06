@@ -1,13 +1,16 @@
-<?php session_start();
+<?php
+ob_start();
+session_start();
 $file_self = explode("/", $_SERVER['PHP_SELF']);
-
+$js_file = 'list';
+$js_file = substr($file_self[count($file_self) - 1], 0, strpos($file_self[count($file_self) - 1], "."));
 if ($file_self[count($file_self) - 1] === 'index.php') {
-        header("Location: ".$config->admin_url."login.php");
+        header("Location: " . $config->admin_url . "login.php");
 }
 if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
-        header("Location: ".$config->admin_url."login.php");
+        header("Location: " . $config->admin_url . "login.php");
 }
-
+ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,7 @@ if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Connect Plus</title>
+        <title>Shopify Quiz App</title>
         <!-- plugins:css -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/mdi/css/materialdesignicons.min.css' ?>">
@@ -50,7 +53,7 @@ if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
                 <!-- partial:partials/_navbar.html -->
                 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                                <a class="navbar-brand brand-logo" href="index.html"><img src="<?= $config->admin_assets_url . 'images/logo.svg' ?>" alt="logo" /></a>
+                                <a class="navbar-brand brand-logo" href="index.html"><img src="<?= $config->admin_assets_url . 'images/logo.png' ?>" alt="logo" /></a>
                                 <a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= $config->admin_assets_url . 'images/logo-mini.svg' ?>" alt="logo" /></a>
                         </div>
                         <div class="navbar-menu-wrapper d-flex align-items-stretch">

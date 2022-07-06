@@ -30,10 +30,22 @@ switch ($action) {
         $resList = $questionsObj->changeStatus($_POST);
         echo json_encode($resList);
         break;
+    case 'admin/change-status-question-all':
+        include_once("../Questions.php");
+        $_POST['user_type'] = 1;
+        $resList = $questionsObj->changeStatusAll($_POST);
+        echo json_encode($resList);
+        break;
     case 'admin/delete-question':
         include_once("../Questions.php");
         $_POST['user_type'] = 1;
         $resList = $questionsObj->deleteQuestion($_POST);
+        echo json_encode($resList);
+        break;
+    case 'admin/update-questions':
+        include_once("../Questions.php");
+        $_POST['user_type'] = 1;
+        $resList = $questionsObj->updateQuestion($_POST);
         echo json_encode($resList);
         break;
 }

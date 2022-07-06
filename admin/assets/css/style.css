@@ -21222,5 +21222,10 @@ dl li {
     color: #b1b1b1;
 }
 
+.disabled-div {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 
 /*# sourceMappingURL=style.css.map */
