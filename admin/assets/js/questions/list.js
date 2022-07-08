@@ -40,13 +40,14 @@ function renderList(data) {
         let i = 0,
             c = 1;
         for (i = 0; i < data.length; i++) {
+            var question = $("<div/>").html(data[i].question).text();
             html += `<tr class="render-count-${data[i].q_id}">
                         <td><input type="checkbox" class="q_ids" name="q_ids" value="${data[i].q_id}"> #${c}</td>
-                        <td class=""> ${truncate(data[i].question,7)}</td>
+                        <td class=""> ${truncate(question,12)}</td>
                         <td class="" data-bs-toggle="tooltip" data-bs-placement="top" title="${statusArrTitle[data[i].question_type]}">  ${statusArr[data[i].question_type]}</td>
                         <td>
                             <div class="form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked${data[i].q_id}" data-change-status-question change-status-id="${data[i].q_id}"  ${ (data[i].status ==1 ) ? "checked" : ''}>
+                                <input class="form-check-input" data-bs-toggle="tooltip" data-bs-placement="top" title="change status" type="checkbox" id="flexSwitchCheckChecked${data[i].q_id}" data-change-status-question change-status-id="${data[i].q_id}"  ${ (data[i].status ==1 ) ? "checked" : ''}>
                             </div>
                         </td>
                         <td class="text-center"> <a class="btn btn-sm btn-primary" href="${base_url}questions/edit.php?qid=${data[i].q_id}" title="edit"> <i class="mdi mdi-lead-pencil"></i></a> </td>
@@ -66,7 +67,8 @@ function renderList(data) {
  * @requiered: String: str, Limit:limit
  */
 function truncate(str, limit) {
-    return str.split(" ").splice(0, limit).join(" ");
+    const strArr = str.split(" ");
+    return strtruncate = (strArr.length <= limit) ? strArr.splice(0, limit).join(" ") : strArr.splice(0, limit).join(" ") + "...";
 }
 
 /**
@@ -128,8 +130,8 @@ $(document).on("click", "[data-delete-question]", function(e) {
     e.preventDefault();
     let checked_ids = [$(this).attr("delete-id")];
     var myModal = new bootstrap.Modal($("#myModal"), {});
-    $(".delete-ids").val(checked_ids);
     myModal.show();
+    $(".delete-ids").val(checked_ids);
 });
 
 /**
@@ -194,8 +196,11 @@ $(document).on("click", ".delete-all", function(e) {
 
 $(document).on("click", ".confirm-delete", function(e) {
     e.preventDefault();
+
     var thisInst = $(this);
     let checked_ids = [];
+    var myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('myModal'));
+    myModal.hide();
     checked_ids = $(".delete-ids").val().split(",");
     if (checked_ids.length == 0) {
         return false;
@@ -212,7 +217,7 @@ $(document).on("click", ".confirm-delete", function(e) {
             data = JSON.parse(data);
             if (data.status == 'success') {
                 for (var i = 0; i < checked_ids.length; i++) {
-                    $(".render-count-" + checked_ids[i]).hide(1000);
+                    $(".render-count-" + checked_ids[i]).hide(1000).remove();
                 }
                 $(".resopnse-message").removeClass('d-none').addClass("alert-success").html(data.message);
             }

@@ -10,7 +10,10 @@ $(document).on("click", ".update-question", function(e) {
     var thisInst = $(this);
     let formData = $('#form-update-question').serializeArray();
     let q_type = $("#question_type").val();
-    field_err['question_error'] = checkQuestion($("#question").val().trim(), "question");
+    var ckeditorData = questionEditor.getData();
+    formData[formData.length] = { name: "question", value: ckeditorData };
+
+    field_err['question_error'] = checkQuestion(ckeditorData.trim(), "question");
     switch (q_type) {
         case '1':
             field_err['options_answer1_error'] = checkAnswer('options_answer[]', 'type-1');
@@ -109,22 +112,24 @@ $(document).on("change", "#question_type", function(e) {
 
 function checkQuestion(val, id) {
     if (val === '') {
-        $("#" + id)
-            .removeClass("is-valid")
-            .addClass("is-invalid")
-            .next()
-            .removeClass("valid-feedback")
-            .addClass("invalid-feedback")
-            .html("*This field is required.");
+        $("#" + id).parent().find(".error-question").removeClass("valid-feedback")
+            .addClass("invalid-feedback d-block")
+            .css("display", "block !important")
+            .html("*This field is required");
         return false;
     } else {
-        $("#" + id)
-            .removeClass("is-invalid")
-            .addClass("is-valid")
-            .next()
-            .removeClass("invalid-feedback")
-            .addClass("valid-feedback")
+        $("#" + id).parent().find(".error-question").removeClass("invalid-feedback")
+            .addClass("valid-feedback d-block")
+            .css("display", "block !important")
             .html("");
+
+        // $("#" + id)
+        //     .removeClass("is-invalid")
+        //     .addClass("is-valid")
+        //     .next()
+        //     .removeClass("invalid-feedback")
+        //     .addClass("valid-feedback")
+        //     .html("");
         return true;
     }
 

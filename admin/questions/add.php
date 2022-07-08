@@ -30,7 +30,8 @@ include('../snippet/side-header.php')
                                                     <input type="hidden" name="action" value="admin/add-questions">
                                                     <div class="form-group">
                                                         <label for="question form-label">Enter Question</label>
-                                                        <input type="text" class="form-control" id="question" name="question" placeholder="Enter Question type" required>
+                                                        <textarea class="form-control richtext-editor" id="question" name="question" cols="30" rows="10" required disabled></textarea>
+                                                        <!-- <input type="text" class="richtext-editor form-control" id="question" name="question" value="test" placeholder="Enter Question type" required disabled> -->
                                                         <div class="error-question"></div>
                                                     </div>
                                                     <div class="form-group">
@@ -48,7 +49,7 @@ include('../snippet/side-header.php')
                                                             <div class="type-1">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="radio" name="options_answer[]" id="options_answer1" value="1" required>
-                                                                    <input type="text" class="form-control" id="options1" name="options[]" placeholder="Enter option" required>
+                                                                    <input type="text" class="form-control richtext-editor" id="options1" name="options[]" placeholder="Enter option" required>
                                                                     <div class="error-options1"></div>
                                                                 </div>
                                                                 <div class="form-check">

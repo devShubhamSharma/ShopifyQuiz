@@ -17,36 +17,42 @@
  <!-- container-scroller -->
  <!-- plugins:js -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
- 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <!--------------CK editor js---->
+ <script src="<?= $config->admin_assets_url . 'ckeditor-plugin/ckeditor.js' ?>"></script>
+ <script src="<?= $config->admin_assets_url . 'ckfinder/ckfinder.js' ?>"></script>
+ <!--------------CK editor js end---->
  <?php
     if (count($file_self) > 4) { ?>
      <script src="<?= $config->admin_assets_url . 'js/' . $file_self[3] . '/' . $js_file . '.js' ?>" type="text/javascript"></script>
  <?php  } ?>
  <script src="<?= $config->admin_assets_url . 'vendors/js/vendor.bundle.base.js' ?>"></script>
- <!-- endinject -->
- <!-- Plugin js for this page -->
- <script src="<?= $config->admin_assets_url . 'vendors/chart.js/Chart.min.js' ?>"></script>
- <script src="<?= $config->admin_assets_url . 'vendors/jquery-circle-progress/js/circle-progress.min.js' ?>"></script>
- <script src="<?= $config->admin_assets_url . 'js/jquery.cookie.js' ?>" type="text/javascript"></script>
- <!-- End plugin js for this page -->
- <!-- inject:js -->
- <script src="<?= $config->admin_assets_url . 'js/off-canvas.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'js/hoverable-collapse.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'js/misc.js' ?>"></script>
- <!-- endinject -->
- <!-- Custom js for this page -->
  <script src="<?= $config->admin_assets_url . 'js/dashboard.js' ?>"></script>
- <!-- End custom js for this page -->
  <script>
      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
      var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
          return new bootstrap.Tooltip(tooltipTriggerEl)
      });
-    //  var myModal = new bootstrap.Modal($("#myModal"), {});
-    //  document.onreadystatechange = function() {
-    //      myModal.show();
-    //  };
+
+     <?php $arrayToLoadEditor = ['edit', 'add'];
+        if (in_array($js_file, $arrayToLoadEditor)) {
+        ?>
+         var questionEditor;
+         ClassicEditor
+             .create(document.querySelector('#question'), {
+                 ckfinder: {
+                     uploadUrl: window.settings.admin_assets_url + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                 }
+             })
+             .then(editor => {
+                 questionEditor = editor;
+             })
+             .catch(error => {
+                 console.error(error);
+             });
+     <?php } ?>
  </script>
  </body>
 

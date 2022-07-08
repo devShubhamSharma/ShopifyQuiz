@@ -41,7 +41,8 @@ ob_end_flush();
                                                     <input type="hidden" name="question_id" value="<?= isset($questionData->q_id) ? $questionData->q_id : '' ?>">
                                                     <div class="form-group">
                                                         <label for="question form-label">Enter Question</label>
-                                                        <input type="text" class="form-control" id="question" name="question" placeholder="Enter Question type" value="<?= (isset($questionData->question)) ? $questionData->question : '' ?>" required>
+                                                        <textarea class="form-control richtext-editor" id="question" name="question" cols="30" rows="10" required disabled><?= (isset($questionData->question)) ? $questionData->question : '' ?></textarea>
+                                                        <!-- <input type="text" class="form-control" id="question" name="question" placeholder="Enter Question type" value="<?= (isset($questionData->question)) ? $questionData->question : '' ?>" required> -->
                                                         <div class="error-question"></div>
                                                     </div>
                                                     <div class="form-group">

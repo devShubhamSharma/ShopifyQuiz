@@ -8,11 +8,14 @@ var error_form = '';
 $(document).on("click", ".add-question", function(e) {
     e.preventDefault();
     var thisInst = $(this);
-    let formData = $('#form-add-question').serializeArray();
+    const formData = $('#form-add-question').serializeArray();
+    var ckeditorData = questionEditor.getData();
+    formData[formData.length] = { name: "question", value: ckeditorData };
     let q_type = $("#question_type").val();
-    field_err['question_error'] = checkQuestion($("#question").val().trim(), "question");
+    field_err['question_error'] = checkQuestion(ckeditorData.trim(), "question");
     switch (q_type) {
         case '1':
+            console.log("sss 1 = " + q_type);
             field_err['options_answer1_error'] = checkAnswer('options_answer[]', 'type-1');
             field_err['options1_error'] = checkOption($("#options1").val().trim(), 'options1');
             field_err['options2_error'] = checkOption($("#options2").val().trim(), 'options2');
@@ -20,6 +23,7 @@ $(document).on("click", ".add-question", function(e) {
             field_err['options4_error'] = checkOption($("#options4").val().trim(), 'options4');
             break;
         case "2":
+            console.log("sss 2 = " + q_type)
             field_err['options_answer2_error'] = checkAnswer('options_answer[]', 'type-2');
             field_err['options1_error'] = checkOption($("#options21").val().trim(), 'options21');
             field_err['options2_error'] = checkOption($("#options22").val().trim(), 'options22');
@@ -27,9 +31,9 @@ $(document).on("click", ".add-question", function(e) {
             field_err['options4_error'] = checkOption($("#options24").val().trim(), 'options24');
             break;
         case "3":
+            console.log("sss 3 = " + q_type)
             field_err['options_answer3_error'] = checkAnswer('options_answer[]', 'type-3');
     }
-
     $.each(field_err, function(i, v) {
         if (v == false) {
             error_form = true;
@@ -109,22 +113,24 @@ $(document).on("change", "#question_type", function(e) {
 
 function checkQuestion(val, id) {
     if (val === '') {
-        $("#" + id)
-            .removeClass("is-valid")
-            .addClass("is-invalid")
-            .next()
-            .removeClass("valid-feedback")
-            .addClass("invalid-feedback")
-            .html("*This field is required.");
+        $("#" + id).parent().find(".error-question").removeClass("valid-feedback")
+            .addClass("invalid-feedback d-block")
+            .css("display", "block !important")
+            .html("*This field is required");
         return false;
     } else {
-        $("#" + id)
-            .removeClass("is-invalid")
-            .addClass("is-valid")
-            .next()
-            .removeClass("invalid-feedback")
-            .addClass("valid-feedback")
+        $("#" + id).parent().find(".error-question").removeClass("invalid-feedback")
+            .addClass("valid-feedback d-block")
+            .css("display", "block !important")
             .html("");
+
+        // $("#" + id)
+        //     .removeClass("is-invalid")
+        //     .addClass("is-valid")
+        //     .next()
+        //     .removeClass("invalid-feedback")
+        //     .addClass("valid-feedback")
+        //     .html("");
         return true;
     }
 

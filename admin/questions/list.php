@@ -35,12 +35,12 @@ include('../snippet/side-header.php')
                                             <a class="dropdown-item py-1 d-flex align-items-center justify-content-between change-status-all" data-status-action="set-active" href="javascript:void(0)">
                                                 <span>Set active</span>
                                                 <span class="p-0">
-                                                    <i class="mdi mdi-account-outline ms-1"></i>
+                                                <i class="fa fa-toggle-on text-primary" aria-hidden="true"></i>
                                                 </span>
                                             </a>
                                             <a class="dropdown-item py-1 d-flex align-items-center justify-content-between change-status-all" data-status-action="set-deactive" href="javascript:void(0)">
                                                 <span>Set deactive </span>
-                                                <i class="mdi mdi-settings"></i>
+                                                <i class="fa fa-toggle-off text-primary" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                     </div>

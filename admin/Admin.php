@@ -20,7 +20,7 @@ class Admin extends MySQL
             ]
         );
         if (count($adminData) > 0 && password_verify($data['password'], $adminData[0]['password'])) {
-            $_SESSION['login'] = true;
+            $_SESSION['admin_login'] = true;
             $_SESSION['email'] = $data['email'];
             $_SESSION['admin_data'] = $adminData[0];
 

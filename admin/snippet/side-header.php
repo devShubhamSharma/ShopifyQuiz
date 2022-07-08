@@ -19,7 +19,7 @@
 					<ul class="nav flex-column sub-menu">
 						<li class="nav-item <?php if($file_self[3]=='questions' && $js_file =='list' ){ echo " active";}?>"> <a class="nav-link" href="<?= $config->admin_url .'questions/list.php'?>">List</a></li>
 						<li class="nav-item <?php if($file_self[3]=='questions' && $js_file =='add' ){ echo " active";}?>"> <a class="nav-link" href="<?= $config->admin_url .'questions/add.php'?>">Add</a></li>
-						<li class="nav-item <?php if($file_self[3]=='questions' && $js_file =='edit' ){ echo " active";}?>"> <a class="nav-link" href="<?= $config->admin_url .'questions/edit.php'?>">Edit</a></li>
+						
 					</ul>
 				</div>
 			</li>
@@ -33,7 +33,7 @@
 			
 			<li class="nav-item sidebar-user-actions">
 				<div class="sidebar-user-menu">
-					<a href="#" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+					<a href ="<?= $config->admin_url .'logout.php'?>" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
 						<span class="menu-title">Log Out</span></a>
 				</div>
 			</li>

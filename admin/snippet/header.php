@@ -7,7 +7,7 @@ $js_file = substr($file_self[count($file_self) - 1], 0, strpos($file_self[count(
 if ($file_self[count($file_self) - 1] === 'index.php') {
         header("Location: " . $config->admin_url . "login.php");
 }
-if (!isset($_SESSION['login']) && $_SESSION['login'] != true) {
+if (!isset($_SESSION['admin_login']) && $_SESSION['admin_login'] != true) {
         header("Location: " . $config->admin_url . "login.php");
 }
 ob_end_flush();

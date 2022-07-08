@@ -1,6 +1,9 @@
 <?php session_start();
-session_destroy();
-$config = include('../config.php') ?>
+$config = include('../config.php');
+if (isset($_SESSION['admin_login']) && $_SESSION['admin_login'] == true) {
+     header("Location: " . $config->admin_url . "dashboard.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
