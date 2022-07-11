@@ -1,19 +1,23 @@
-<?php 
+<?php
 
 // if ( !isset($_SESSION['start_test'])  ) {
 
 // }
 
 include('../user/snippet/header.php');
-
+include_once("../admin/Questions.php");
+$data = $questionsObj->listQuestionForTest();
+echo "<pre>";
+print_r($data);
+echo "</pre>";
 ?>
 <!--Top Section-->
 <div class="intro py-3 b-white text-center">
     <div class="container">
         <h2 class="text-primary display-3 my-4">Liquid Quiz</h2>
-        <?php if (isset($_SESSION['user_data']['first_name'])) {?>
-        <h2 class="text-primary display-6 my-1">Welcome: <?=ucfirst($_SESSION['user_data']['title']).' '.ucfirst($_SESSION['user_data']['first_name']).' '.ucfirst($_SESSION['user_data']['middle_name']).' '.ucfirst($_SESSION['user_data']['last_name'])?> </h2><br />
-        <?php }?> 
+        <?php if (isset($_SESSION['user_data']['first_name'])) { ?>
+            <h2 class="text-primary display-6 my-1">Welcome: <?= ucfirst($_SESSION['user_data']['title']) . ' ' . ucfirst($_SESSION['user_data']['first_name']) . ' ' . ucfirst($_SESSION['user_data']['middle_name']) . ' ' . ucfirst($_SESSION['user_data']['last_name']) ?> </h2><br />
+        <?php } ?>
 
     </div>
 </div>
@@ -37,7 +41,116 @@ include('../user/snippet/header.php');
     <div class="container">
         <h3 class="my-5 text-white">On with the questions...</h3>
 
-        <form class="quiz-form text-light">
+        <style>
+            /* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Roboto', sans-serif
+            }
+
+            p {
+                margin: 0%
+            }
+
+
+
+            label.box {
+                display: flex;
+                margin-top: 10px;
+                padding: 10px 12px;
+                border-radius: 5px;
+                cursor: pointer;
+                border: 1px solid #ddd
+            }
+
+            #one:checked~label.first,
+            #two:checked~label.second,
+            #three:checked~label.third,
+            #four:checked~label.forth,
+            #five:checked~label.fifth,
+            #six:checked~label.sixth,
+            #seven:checked~label.seveth,
+            #eight:checked~label.eighth {
+                border-color: #8e498e
+            }
+
+            #one:checked~label.first .circle,
+            #two:checked~label.second .circle,
+            #three:checked~label.third .circle,
+            #four:checked~label.forth .circle,
+            #five:checked~label.fifth .circle,
+            #six:checked~label.sixth .circle,
+            #seven:checked~label.seveth .circle,
+            #eight:checked~label.eighth .circle {
+                border: 6px solid #8e498e;
+                background-color: #fff
+            }
+
+            label.box:hover {
+                background: #d5bbf7
+            }
+
+            label.box .course {
+                display: flex;
+                align-items: center;
+                width: 100%
+            }
+
+            label.box .circle {
+                height: 22px;
+                width: 22px;
+                border-radius: 50%;
+                margin-right: 15px;
+                border: 2px solid #ddd;
+                display: inline-block
+            }
+
+            input[type="radio"] {
+                display: none
+            }
+
+            .btn.btn-primary {
+                border-radius: 25px;
+                margin-top: 20px
+            }
+
+            @media(max-width: 450px) {
+                .subject {
+                    font-size: 12px
+                }
+            }
+        </style>
+        <?php
+        $countQuest =1;
+        foreach ($data['data']  as $key => $qesData) {
+        ?>
+            <div class="card mt-2 ck-content">
+                <div class="card-header">
+                    <div  class="font-weight-bold d-flex flex-row bd-highlight"><?=$countQuest.".   "?> <?= htmlspecialchars_decode($qesData['questionData']->question)?></div>
+                </div>
+                <div class="card-body ">
+                    <div>
+                        <input type="radio" name="box" id="one" checked>
+                        <input type="radio" name="box" id="two">
+                        <input type="radio" name="box" id="three">
+                        <input type="radio" name="box" id="four">
+                        <label for="one" class="box first">
+                            <div class="course"> <span class="circle"></span> <span class="subject"> When its raining ,people's umbrella are all you're going to see from above </span> </div>
+                        </label> <label for="two" class="box second">
+                            <div class="course"> <span class="circle"></span> <span class="subject"> When its raining,people's umbrella are all your going to see from above </span> </div>
+                        </label> <label for="three" class="box third">
+                            <div class="course"> <span class="circle"></span> <span class="subject"> When its raining,peoples umbrella's are all you're going to see from above </span> </div>
+                        </label> <label for="four" class="box forth">
+                            <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        <?php $countQuest++; } ?>
+        <!-- <form class="quiz-form text-light">
             <div class="my-5">
                 <p class="lead font-weight-normal">1. Which one is the static section?</p>
                 <div class="form-check my-2 text-white-50">
@@ -47,7 +160,7 @@ include('../user/snippet/header.php');
                 <div class="form-check my-2 text-white-50">
                     <input type="radio" name="q1" value="B">
                     <label class="form-check-label">Featured Products</label>
-                </div>  
+                </div>
                 <div class="form-check my-2 text-white-50">
                     <input type="radio" name="q1" value="C">
                     <label class="form-check-label">Slideshow</label>
@@ -977,10 +1090,10 @@ include('../user/snippet/header.php');
             <div class="text-center">
                 <input type="submit" class="btn btn-light">
             </div>
-        </form>
+        </form> -->
     </div>
 </div>
 <script type="text/javascript">
-       
-    </script>
+
+</script>
 <?php include('../user/snippet/footer.php'); ?>

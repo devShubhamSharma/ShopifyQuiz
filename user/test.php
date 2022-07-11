@@ -11,8 +11,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
         * {
             margin: 0;
             padding: 0;

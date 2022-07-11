@@ -37,12 +37,12 @@ class Questions extends MySQL
             $this->questionData = $this->Select($this->table, ['q_id' => $id]);
             $this->questionOptnData = $this->Select($this->table_options, ['q_id' => $id]);
             $this->questionAsnwerData = $this->Select($this->table_answer, ['q_id' => $id]);
-            if(count($this->questionData) == 0){
+            if (count($this->questionData) == 0) {
                 return $this->response = [
                     "status" => "success",
                     "message" => count($this->questionData) . " list fetched.",
                     "data" =>   []
-                ];    
+                ];
             }
             $this->response = [
                 "status" => "success",
@@ -250,6 +250,36 @@ class Questions extends MySQL
             $this->response = [
                 "status" => "success",
                 "message" => "Question updated successfully."
+            ];
+        } catch (Exception $e) {
+            $this->response = [
+                "status" => "error",
+                "message" => "Error found: " . $e->getMessage(), "\n"
+            ];
+        }
+        return $this->response;
+    }
+
+    /**
+     * for list test
+     */
+    public function listQuestionForTest()
+    {
+        $this->response = [];
+        $questionData = [];
+        try {
+            $this->questionData = $this->Select($this->table, ['status' => 1]);
+            foreach ($this->questionData as $key => $val) {
+                $questionData[$key]['questionData'] = (object)$this->questionData[$key];
+
+                $this->questionOptnData = $this->Select($this->table_options, ['q_id' => $val['q_id']]);
+                $this->questionAsnwerData = $this->Select($this->table_answer, ['q_id' => $val['q_id']]);
+                $questionData[$key]['optionData'] =  (object)$this->questionOptnData[0];
+                $questionData[$key]['answerData'] =  (object)$this->questionAsnwerData[0];
+            }
+            $this->response = [
+                "status" => "success",
+                "data" => $questionData
             ];
         } catch (Exception $e) {
             $this->response = [
