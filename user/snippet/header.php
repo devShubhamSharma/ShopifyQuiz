@@ -3,7 +3,7 @@ include('../user/UserCRUD.php');
 if(!isset($_SESSION['login']))   {
     header('Location:login.php');
 } 
-echo"<pre>"; print_r($_SESSION);echo "</pre>";
+//echo"<pre>"; print_r($_SESSION);echo "</pre>";
 $config = include("../config.php");
 ?>
 <!DOCTYPE html>
