@@ -15,13 +15,19 @@
 					<span class="menu-title">Questions</span>
 					<i class="menu-arrow"></i>
 				</a>
-				<div class="collapse" id="ui-basic">
+				<div class="collapse <?= ($file_self[3]=='questions') ? ' show ': ''?>" id="ui-basic">
 					<ul class="nav flex-column sub-menu">
-						<li class="nav-item <?php if($file_self[3]=='questions' && $js_file =='list' ){ echo " active";}?>"> <a class="nav-link" href="<?= $config->admin_url .'questions/list.php'?>">List</a></li>
-						<li class="nav-item <?php if($file_self[3]=='questions' && $js_file =='add' ){ echo " active";}?>"> <a class="nav-link" href="<?= $config->admin_url .'questions/add.php'?>">Add</a></li>
+						<li class="nav-item"> <a class="nav-link <?php if($file_self[3]=='questions' && $js_file =='list' ){ echo " active";}?>" href="<?= $config->admin_url .'questions/list.php'?>">List</a></li>
+						<li class="nav-item"> <a class="nav-link <?php if($file_self[3]=='questions' && $js_file =='add' ){ echo " active";}?>" href="<?= $config->admin_url .'questions/add.php'?>">Add</a></li>
 						
 					</ul>
 				</div>
+			</li>
+			<li class="nav-item <?= ($file_self[3]==='test') ? ' active ': ''?>">
+				<a class="nav-link" href="<?= $config->admin_url .'test/list.php'?>">
+					<span class="icon-bg"><i class="menu-icon fas fa-question"></i></span>
+					<span class="menu-title">Test</span>
+				</a>
 			</li>
 			<li class="nav-item sidebar-user-actions">
 				<div class="sidebar-user-menu">

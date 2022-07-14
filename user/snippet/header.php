@@ -1,6 +1,6 @@
 <?php
 include('../user/UserCRUD.php');
-if(!isset($_SESSION['login']))   {
+if(!isset($_SESSION['login']) && !isset($_SESSION['email']))   {
     header('Location:login.php');
 } 
 //echo"<pre>"; print_r($_SESSION);echo "</pre>";

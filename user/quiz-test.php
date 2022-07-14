@@ -3,7 +3,7 @@
 // if ( !isset($_SESSION['start_test'])  ) {
 
 // }
-
+session_start();
 include('../user/snippet/header.php');
 include_once("../admin/Questions.php");
 $data = $questionsObj->listQuestionForTest();
@@ -13,33 +13,33 @@ $data = $questionsObj->listQuestionForTest();
 <div class="intro py-3 b-white text-center">
     <div class="container">
         <h2 class="text-primary display-3 my-4">Liquid Quiz</h2>
-        <?php if (isset($_SESSION['user_data']['first_name'])) { ?>
-            <h2 class="text-primary display-6 my-1">Welcome: <?= ucfirst($_SESSION['user_data']['title']) . ' ' . ucfirst($_SESSION['user_data']['first_name']) . ' ' . ucfirst($_SESSION['user_data']['middle_name']) . ' ' . ucfirst($_SESSION['user_data']['last_name']) ?> </h2><br />
+        <?php if (isset($_SESSION['email'])) { ?>
+            <div class="text-primary display-6 my-1">Welcome: <?= $_SESSION['email']?> </div><br />
         <?php } ?>
 
     </div>
 </div>
 
-<div class="intro py-5 b-white text-center">
+<div class="intro countdown-timer py-5 b-white text-center">
     <div class="container">
         <h2 class="text-primary display-6 my-1">Time</h2><br />
-        <h2 class="text-primary display-6 my-1 countdown"></h2>
+        <h2 class="text-primary display-6 my-1 countdown" id="countdown"></h2>
     </div>
 </div>
 
-<!--Result section-->
-<div class="result py-4 d-none bg-light text-center">
-    <div class="container lead">
-        <p>You Scored<span class="text-primary display-4 p-3">0%</span></p>
+<div class="container test-message d-none">
+    <div class="alert alert-success">
+        <strong>Success!</strong> Your test submittted successfully.
     </div>
 </div>
+
 
 <!--Quiz section-->
-<div class="quiz py-4 bg-primary">
+<div class="quiz py-4 bg-primary" id="quiz-div">
     <div class="container">
         <h3 class="my-5 text-white">On with the questions...</h3>
         <form id="test-form-submit">
-            <input type="hidden"  name="action" id="action" value="user/test-submit">
+            <input type="hidden" name="action" id="action" value="user/test-submit">
             <div class="quiz-html">
                 <style>
                     /* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
@@ -160,7 +160,7 @@ $data = $questionsObj->listQuestionForTest();
                     <?php
                     if ($qesData['questionData']->question_type  == 1 || $qesData['questionData']->question_type  == 2) {
                         $questionOptionArr1 = unserialize(htmlspecialchars_decode($qesData['optionData']->q_option));
-                       ?>
+                    ?>
 
                         <div class="card mt-2 ck-content">
                             <div class="card-header">

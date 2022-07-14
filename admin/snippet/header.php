@@ -4,6 +4,7 @@ session_start();
 $file_self = explode("/", $_SERVER['PHP_SELF']);
 $js_file = 'list';
 $js_file = substr($file_self[count($file_self) - 1], 0, strpos($file_self[count($file_self) - 1], "."));
+
 if ($file_self[count($file_self) - 1] === 'index.php') {
         header("Location: " . $config->admin_url . "login.php");
 }

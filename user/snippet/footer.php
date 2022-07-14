@@ -1,42 +1,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="<?= $config->admin_assets_url . 'ckeditor-plugin/ckeditor.js' ?>"></script>
 <link rel="stylesheet" href="<?= $config->assets_url . 'bootstrap.min.js' ?>">
-<script src="<?= $config->assets_url . 'sandbox1.js' ?>"></script>
+<!-- <script src="<?= $config->assets_url . 'sandbox1.js' ?>"></script> -->
 <script src="<?= $config->assets_url . 'custom.js' ?>"></script>
+<script src="<?= $config->assets_url . 'quiz-test.js' ?>"></script>
+<script src="<?= $config->assets_url . 'detect-dev-tool.js' ?>"></script>
 
 <script>
-    $(document).on("click", ".submit-test", function(e) {
-        e.preventDefault();
-        submitTest();
-    });
-    $(document).on("click", ".clear-response", function(e) {
-        $(this).parent().addClass("hello");
-        $(this).parent().find('input:radio , input:checkbox').each(function() {
-            $(this).prop("checked", false);
-        });
-    });
-
-    function submitTest() {
-        //$(".quiz-html").addClass("disabled-div");
-        var formData = $("#test-form-submit").serializeArray();
-        $.ajax({
-            method: "POST",
-            url: "/ShopifyQuiz/user/ajaxcall.php",
-            data: formData,
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.status == "success") {
-                } else {
-                }
-
-            },
-            error: function(xhr, status, error) {
-                var errorMessage = xhr.status + ': ' + xhr.statusText
-                console.log('Error - ' + errorMessage);
-            }
-        });
-        console.log(formData);
-    }
+    
     //  const onConfirmRefresh = function(event) {
     //     event.preventDefault();
     //     return event.returnValue = "Are you sure you want to leave the page?";

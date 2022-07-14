@@ -23,7 +23,7 @@
  <script src="<?= $config->admin_assets_url . 'ckfinder/ckfinder.js' ?>"></script>
  <!--------------CK editor js end---->
  <?php
-    if (count($file_self) > 4) { ?>
+    if (count($file_self) > 4 && $file_self[3]==='questions') { ?>
      <script src="<?= $config->admin_assets_url . 'js/' . $file_self[3] . '/' . $js_file . '.js' ?>" type="text/javascript"></script>
  <?php  } ?>
  <script src="<?= $config->admin_assets_url . 'vendors/js/vendor.bundle.base.js' ?>"></script>
