@@ -24,6 +24,7 @@ function submitTest() {
                 $(".test-message").removeClass("d-none");
                 $(".countdown-timer").remove();
                 $("#quiz-div").remove();
+                $(".instruction-div").remove();
             } else {}
         },
         error: function(xhr, status, error) {
@@ -89,7 +90,7 @@ window.addEventListener(
 countdownTimeStart();
 
 function countdownTimeStart() {
-    var timeCounter = 20 * 60 * 1000;
+    var timeCounter = testTime * 60 * 1000;
     var x = setInterval(function() {
         var now = new Date().getTime();
         timeCounter -= 1000;

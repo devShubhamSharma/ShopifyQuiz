@@ -1,11 +1,13 @@
 <?php
 //session_start();
 require_once(dirname(__FILE__, 2) . '/MySql.php');
+
 class UserCRUD extends MySQL
 {
     public $table_answer = 'tbl_question_answer';
     public $table_score = 'tbl_score';
     public $table_score_details = 'tbl_score_details';
+    public $table_test = 'tbl_test';
 
     public function __construct()
     {
@@ -15,23 +17,29 @@ class UserCRUD extends MySQL
     {
         $this->passcode = false;
         $this->response = [];
-        if(!isset($data['email']) || $data['email']=='' ){
+        if (!isset($data['email']) || $data['email'] == '') {
             return  $this->response = [
                 "status" => "error",
                 "message" => "Email can`t be blank."
             ];
         }
-        //$userData = $this->Select('tbl_user_master', ['email_id' => $data['email']]);
-        $userConfig = $this->Select('tbl_config');
-        foreach ($userConfig as $key => $val) {
-            if ($val['config_key'] === 'PASSCODE' && $val['config_value'] === $data['passcode']) {
-                $this->passcode = true;
-            }
+        $this->test_code = base64_decode($data['test_code']);
+        $userData = $this->Select('tbl_test', [0 => ['test_code' => $this->test_code], 1 => ['status' => 1]]);
+        if (count($userData) == 0) {
+            return  $this->response = [
+                "status" => "error",
+                "message" => "No any test found."
+            ];
         }
-        if ( $this->passcode) {
+        if ($userData[0]['test_code'] === $this->test_code && $userData[0]['passcode'] === $data['passcode']) {
+            $this->passcode = true;
+        }
+
+        if ($this->passcode) {
             $_SESSION['login'] = true;
+            $_SESSION['test_code'] = $this->test_code;
             $_SESSION['email'] = $data['email'];
-           // $_SESSION['user_data'] = $userData[0];
+            // $_SESSION['user_data'] = $userData[0];
 
             $this->response = [
                 "status" => "success",
@@ -48,7 +56,7 @@ class UserCRUD extends MySQL
     function userTestSubmit($data)
     {
         include_once("../admin/Questions.php");
-       
+
         $this->response = [];
         $this->allQuestion = [];
         $this->total_q = 0;
@@ -84,7 +92,7 @@ class UserCRUD extends MySQL
                 }
             }
 
-            $score = ['email_id' => $_SESSION['email'], 'total_q' => $this->total_q, 'not_answered_q' => $this->not_answered_q, 'answered_q' => $this->answered_q, 'correct_q' => $this->correct_q, 'wrong_q' => $this->wrong_q, 'obtain_mark' => $this->obtain_mark];
+            $score = ['test_code' => $_SESSION['test_code'], 'email_id' => $_SESSION['email'], 'total_q' => $this->total_q, 'not_answered_q' => $this->not_answered_q, 'answered_q' => $this->answered_q, 'correct_q' => $this->correct_q, 'wrong_q' => $this->wrong_q, 'obtain_mark' => $this->obtain_mark];
             $this->resQuestion = $this->Insert($this->table_score, $score);
             $this->score_id = $this->ConnectionLastInsertId();
             $score_details = ['score_id' => $this->score_id, 'question_response' => serialize($this->allQuestion)];
@@ -92,6 +100,44 @@ class UserCRUD extends MySQL
             $this->response = [
                 "status" => "success",
                 "message" => "Thanks, Test submitted successfully."
+            ];
+        } catch (Exception $e) {
+            $this->response = [
+                "status" => "error",
+                "message" => "Error found: " . $e->getMessage(), "\n"
+            ];
+        }
+        return $this->response;
+    }
+    public function listTestByTestcode($testcode)
+    {
+        $this->response = [];
+        try {
+            $this->testData = $this->Select($this->table_test, [0 => ['test_code' => $testcode], 1 => ['status' => 1]]);
+            $this->response = [
+                "status" => "success",
+                "message" => count($this->testData) . " list fetched.",
+                "data" =>   $this->testData
+            ];
+        } catch (Exception $e) {
+            $this->response = [
+                "status" => "error",
+                "message" => "Error found: " . $e->getMessage(), "\n"
+            ];
+        }
+        return $this->response;
+    }
+
+    public function checkTestByUser($testcode)
+    {
+        $this->response = [];
+        try {
+            $sql = "SELECT * FROM `tbl_score` WHERE test_code='" . $testcode . "' AND email_id='" . $_SESSION['email'] . "' ORDER BY score_id DESC LIMIT 1";
+            $resSql = $this->Execute($sql);
+            // $this->testData = $this->Select($this->table_test, [0 => ['test_code' => $testcode], 1 => ['status' => 1]]);
+            $this->response = [
+                "status" => "success",
+                "data" =>  $resSql
             ];
         } catch (Exception $e) {
             $this->response = [

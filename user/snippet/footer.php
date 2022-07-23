@@ -1,7 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="<?= $config->admin_assets_url . 'ckeditor-plugin/ckeditor.js' ?>"></script>
 <link rel="stylesheet" href="<?= $config->assets_url . 'bootstrap.min.js' ?>">
-<!-- <script src="<?= $config->assets_url . 'sandbox1.js' ?>"></script> -->
 <script src="<?= $config->assets_url . 'custom.js' ?>"></script>
 <script src="<?= $config->assets_url . 'quiz-test.js' ?>"></script>
 <script src="<?= $config->assets_url . 'detect-dev-tool.js' ?>"></script>

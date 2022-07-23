@@ -21,8 +21,14 @@ $config = include('../config.php') ?>
                                 ?>" class="card-img-top" alt="..."> -->
                 <div class="card-body text-primary">
                     <h5 class="card-title text-center">Liquid Quiz</h5>
+                    <?php if(isset($_SESSION['test_capture'])) {?>
+                    <div class="alert alert-danger ">
+                            <?= $_SESSION['test_capture']?>
+                        </div>
+                        <?php } ?>
                     <form id="test-login-form" method="post" action="quiz-test.php">
                         <input type="hidden" name="action" value="user/login">
+                        <input type="hidden" name="test_code" value="<?=(isset($_GET['test']) && $_GET['test'] !='') ? $_GET['test'] : ''?>">
                         <div class="form-outline mb-4">
                             <label class="form-label" for="email">Email your email</label>
                             <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" />

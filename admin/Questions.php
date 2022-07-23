@@ -290,6 +290,5 @@ class Questions extends MySQL
         }
         return $this->response;
     }
-   
 }
 $questionsObj = new Questions();

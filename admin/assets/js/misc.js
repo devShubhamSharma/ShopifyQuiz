@@ -90,35 +90,35 @@
 
         //fullscreen
         $("#fullscreen-button").on("click", function toggleFullScreen() {
-            if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
-                if (document.documentElement.requestFullScreen) {
-                    document.documentElement.requestFullScreen();
-                } else if (document.documentElement.mozRequestFullScreen) {
-                    document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullScreen) {
-                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-                } else if (document.documentElement.msRequestFullscreen) {
-                    document.documentElement.msRequestFullscreen();
+                if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+                    if (document.documentElement.requestFullScreen) {
+                        document.documentElement.requestFullScreen();
+                    } else if (document.documentElement.mozRequestFullScreen) {
+                        document.documentElement.mozRequestFullScreen();
+                    } else if (document.documentElement.webkitRequestFullScreen) {
+                        document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                    } else if (document.documentElement.msRequestFullscreen) {
+                        document.documentElement.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.cancelFullScreen) {
+                        document.cancelFullScreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitCancelFullScreen) {
+                        document.webkitCancelFullScreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
                 }
-            } else {
-                if (document.cancelFullScreen) {
-                    document.cancelFullScreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        })
-        if ($.cookie('connectplus-free-banner') != "true") {
-            document.querySelector('#proBanner').classList.add('d-flex');
-            document.querySelector('.navbar').classList.remove('fixed-top');
-        } else {
-            document.querySelector('#proBanner').classList.add('d-none');
-            document.querySelector('.navbar').classList.add('fixed-top');
-        }
+            })
+            // if ($.cookie('connectplus-free-banner') != "true") {
+            //     document.querySelector('#proBanner').classList.add('d-flex');
+            //     document.querySelector('.navbar').classList.remove('fixed-top');
+            // } else {
+            //     document.querySelector('#proBanner').classList.add('d-none');
+            //     document.querySelector('.navbar').classList.add('fixed-top');
+            // }
 
         if ($(".navbar").hasClass("fixed-top")) {
             document.querySelector('.page-body-wrapper').classList.remove('pt-0');
@@ -129,16 +129,16 @@
             document.querySelector('.navbar').classList.add('mt-3');
 
         }
-        document.querySelector('#bannerClose').addEventListener('click', function() {
-            document.querySelector('#proBanner').classList.add('d-none');
-            document.querySelector('#proBanner').classList.remove('d-flex');
-            document.querySelector('.navbar').classList.remove('pt-5');
-            document.querySelector('.navbar').classList.add('fixed-top');
-            document.querySelector('.page-body-wrapper').classList.add('proBanner-padding-top');
-            document.querySelector('.navbar').classList.remove('mt-3');
-            var date = new Date();
-            date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-            $.cookie('connectplus-free-banner', "true", { expires: date });
-        });
+        // document.querySelector('#bannerClose').addEventListener('click', function() {
+        // document.querySelector('#proBanner').classList.add('d-none');
+        // document.querySelector('#proBanner').classList.remove('d-flex');
+        //  document.querySelector('.navbar').classList.remove('pt-5');
+        //  document.querySelector('.navbar').classList.add('fixed-top');
+        // document.querySelector('.page-body-wrapper').classList.add('proBanner-padding-top');
+        //   document.querySelector('.navbar').classList.remove('mt-3');
+        //  var date = new Date();
+        //   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+        //   $.cookie('connectplus-free-banner', "true", { expires: date });
+        //   });
     });
 })(jQuery);

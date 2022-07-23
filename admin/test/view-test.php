@@ -11,7 +11,7 @@ $testData = $data['data'];
 ?>
 <div class="content-wrapper">
     <div class="d-xl-flex justify-content-between align-items-start">
-        <h2 class="text-dark font-weight-bold mb-2"> All Test </h2>
+        <h2 class="text-dark font-weight-bold mb-2"> View Test </h2>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -19,7 +19,7 @@ $testData = $data['data'];
             <div class="tab-content tab-transparent-content">
                 <div class="tab-pane fade show active" id="business-1" role="tabpanel" aria-labelledby="business-tab">
                     <div class="row">
-                    <div class="col-12 grid-margin">
+                        <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="alert d-none resopnse-message"> </div>
@@ -39,7 +39,7 @@ $testData = $data['data'];
                                             <a class="dropdown-item py-1 d-flex align-items-center justify-content-between change-status-all" data-status-action="set-active" href="javascript:void(0)">
                                                 <span>Set active</span>
                                                 <span class="p-0">
-                                                <i class="fa fa-toggle-on text-primary" aria-hidden="true"></i>
+                                                    <i class="fa fa-toggle-on text-primary" aria-hidden="true"></i>
                                                 </span>
                                             </a>
                                             <a class="dropdown-item py-1 d-flex align-items-center justify-content-between change-status-all" data-status-action="set-deactive" href="javascript:void(0)">
@@ -50,15 +50,17 @@ $testData = $data['data'];
                                     </div>
                                     <!-- all action dropdown end----->
                                     <table class="table table-hover table-bordered list-table">
+                                        <input type="hidden" name="test_code" id="test_code" value="<?= (isset($_GET['test']) && $_GET['test'] != '') ? $_GET['test'] : ''  ?>">
+
                                         <thead class="sidebar text-light">
-                                            <tr>
-                                                <th style="width:1%;"><input class="" type="hidden" name="test_ids_parent" id="test_ids_parent"> # </th>
-                                                <th style="width:90%;">Test</th>
-                                                <th style="width:2%;">Code</th>
-                                                <th style="width:1%;">Url</th>
-                                                <th style="width:2%;">Status</th>
-                                                <!-- <th colspan="2" class="text-center" style="width:3%;">Action</th> -->
-                                            </tr>
+                                        <tr>
+                                            <th style="width:1%;"><input class="" type="hidden" name="test_ids_parent" id="test_ids_parent"> # </th>
+                                            <th style="width:90%;">Email id</th>
+                                            <th style="width:2%;">Times</th>
+                                            <th style="width:1%;">View test</th>
+                                            <th style="width:2%;">Allow Again</th>
+                                            <!-- <th colspan="2" class="text-center" style="width:3%;">Action</th> -->
+                                        </tr>
                                         </thead>
                                         <tbody class="html-div-test">
                                             <tr class="loader-div">
@@ -83,8 +85,8 @@ $testData = $data['data'];
 
                                                 <!-- Modal body -->
                                                 <div class="modal-body">
-                                                   Are you sure to delete?
-                                                   <input type="hidden" class="delete-ids" name="delete-ids" value="0">
+                                                    Are you sure to delete?
+                                                    <input type="hidden" class="delete-ids" name="delete-ids" value="0">
                                                 </div>
 
                                                 <!-- Modal footer -->

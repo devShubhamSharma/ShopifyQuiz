@@ -23,15 +23,27 @@
 					</ul>
 				</div>
 			</li>
-			<li class="nav-item <?= ($file_self[3]==='test') ? ' active ': ''?>">
-				<a class="nav-link" href="<?= $config->admin_url .'test/list.php'?>">
-					<span class="icon-bg"><i class="menu-icon fas fa-question"></i></span>
+
+			<li class="nav-item <?= ($file_self[3]=='test') ? ' active ': ''?>">
+				<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-test" aria-expanded="<?= ($file_self[3]=='test') ? 'true': 'false'?>" aria-controls="ui-basic">
+					<span class="icon-bg"><i class="mdi mdi-crosshairs-gps menu-icon"></i></span>
 					<span class="menu-title">Test</span>
+					<i class="menu-arrow"></i>
 				</a>
+				<div class="collapse <?= ($file_self[3]=='test') ? ' show ': ''?>" id="ui-basic-test">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item"> <a class="nav-link <?php if($file_self[3]=='test' && $js_file =='list' ){ echo " active";}?>" href="<?= $config->admin_url .'test/list.php'?>">List</a></li>
+						<li class="nav-item"> <a class="nav-link <?php if($file_self[3]=='test' && $js_file =='add' ){ echo " active";}?>" href="<?= $config->admin_url .'test/add.php'?>">Add</a></li>
+						
+						
+					</ul>
+				</div>
 			</li>
-			<li class="nav-item sidebar-user-actions">
+
+			
+			<li class="nav-item sidebar-user-actions <?= ($file_self[3]==='setting') ? ' active ': ''?>">
 				<div class="sidebar-user-menu">
-					<a href="#" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
+					<a href="<?= $config->admin_url .'setting.php'?>" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
 						<span class="menu-title">Settings</span>
 					</a>
 				</div>

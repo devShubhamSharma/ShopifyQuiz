@@ -17,13 +17,13 @@
  <!-- container-scroller -->
  <!-- plugins:js -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
  <!--------------CK editor js---->
  <script src="<?= $config->admin_assets_url . 'ckeditor-plugin/ckeditor.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'ckfinder/ckfinder.js' ?>"></script>
  <!--------------CK editor js end---->
  <?php
-    if (count($file_self) > 4 && $file_self[3]==='questions') { ?>
+    if (count($file_self) > 4 && ($file_self[3]==='questions' || $file_self[3]==='test') ) { ?>
      <script src="<?= $config->admin_assets_url . 'js/' . $file_self[3] . '/' . $js_file . '.js' ?>" type="text/javascript"></script>
  <?php  } ?>
  <script src="<?= $config->admin_assets_url . 'vendors/js/vendor.bundle.base.js' ?>"></script>
@@ -37,7 +37,7 @@
      });
 
      <?php $arrayToLoadEditor = ['edit', 'add'];
-        if (in_array($js_file, $arrayToLoadEditor)) {
+        if (in_array($js_file, $arrayToLoadEditor) && $file_self[3]==='questions') {
         ?>
          var questionEditor;
          ClassicEditor
@@ -53,6 +53,38 @@
                  console.error(error);
              });
      <?php } ?>
+
+     <?php $arrayToLoadEditor = ['edit', 'add'];
+        if (in_array($js_file, $arrayToLoadEditor) && $file_self[3]==='test') {
+        ?>
+         var testTopicEditor,testInstructionEditor;
+         ClassicEditor
+             .create(document.querySelector('#test_topic', '#test_instruction'), {
+                 ckfinder: {
+                     uploadUrl: window.settings.admin_assets_url + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                 }
+             })
+             .then(editor => {
+                testTopicEditor = editor;
+             })
+             .catch(error => {
+                 console.error(error);
+             });
+
+             ClassicEditor
+             .create(document.querySelector('#test_instruction'), {
+                 ckfinder: {
+                     uploadUrl: window.settings.admin_assets_url + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                 }
+             })
+             .then(editor => {
+                testInstructionEditor = editor;
+             })
+             .catch(error => {
+                 console.error(error);
+             });
+     <?php } ?>
+    
  </script>
  </body>
 
