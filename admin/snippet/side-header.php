@@ -41,13 +41,13 @@
 			</li>
 
 			
-			<li class="nav-item sidebar-user-actions <?= ($file_self[3]==='setting') ? ' active ': ''?>">
+			<!-- <li class="nav-item sidebar-user-actions <?//= ($file_self[3]==='setting') ? ' active ': ''?>">
 				<div class="sidebar-user-menu">
-					<a href="<?= $config->admin_url .'setting.php'?>" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
+					<a href="<?//= $config->admin_url .'setting.php'?>" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
 						<span class="menu-title">Settings</span>
 					</a>
 				</div>
-			</li>
+			</li> -->
 			
 			<li class="nav-item sidebar-user-actions">
 				<div class="sidebar-user-menu">

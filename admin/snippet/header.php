@@ -30,6 +30,7 @@ ob_end_flush();
         <!-- Plugin css for this page -->
         <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/font-awesome/css/font-awesome.min.css' ?>" />
         <link rel="stylesheet" href="<?= $config->admin_assets_url . 'vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' ?>">
+        <link rel="stylesheet" href="<?= $config->assets_url . 'content-styles.css' ?>" type="text/css">
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <!-- endinject -->

@@ -200,18 +200,40 @@ class Test extends MySQL
             $this->data = $this->Select(
                 $this->table_score,
                 [
-                    0=>['test_code' => $data['test_code']],
-                    1=>['email_id' =>$data['email_id']]
+                    0 => ['test_code' => $data['test_code']],
+                    1 => ['email_id' => $data['email_id']]
                 ],
                 "created_at",
                 "DESC"
-               );
+            );
             $this->response = [
-                    "status" => "success",
-                    'data' => $this->data,
-                    "message" => "Total ".count($this->data)." found."
-                ];
-            
+                "status" => "success",
+                'data' => $this->data,
+                "message" => "Total " . count($this->data) . " found."
+            ];
+        } catch (Exception $e) {
+            $this->response = [
+                "status" => "error",
+                "message" => "Error found: " . $e->getMessage(), "\n"
+            ];
+        }
+        return $this->response;
+    }
+    function listTestResponse($data)
+    {
+        $this->response = [];
+        try {
+            $this->data = $this->Select(
+                $this->table_score_details,
+                ['score_id' => $data['score_id']]
+            );
+            //echo "<pre>";print_r(unserialize(html_entity_decode($this->data[0]['question_response'])));echo"</pre>";
+            $this->data['question_response'] = unserialize(html_entity_decode($this->data[0]['question_response']));
+            $this->response = [
+                "status" => "success",
+                'data' => $this->data,
+                "message" => "Total " . count($this->data) . " found."
+            ];
         } catch (Exception $e) {
             $this->response = [
                 "status" => "error",

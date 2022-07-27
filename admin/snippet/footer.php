@@ -22,6 +22,7 @@
  <script src="<?= $config->admin_assets_url . 'ckeditor-plugin/ckeditor.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'ckfinder/ckfinder.js' ?>"></script>
  <!--------------CK editor js end---->
+ <script src="<?= $config->admin_assets_url . 'js/variable.min.js' ?>"></script>
  <?php
     if (count($file_self) > 4 && ($file_self[3]==='questions' || $file_self[3]==='test') ) { ?>
      <script src="<?= $config->admin_assets_url . 'js/' . $file_self[3] . '/' . $js_file . '.js' ?>" type="text/javascript"></script>

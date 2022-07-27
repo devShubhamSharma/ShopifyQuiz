@@ -82,10 +82,10 @@ switch ($action) {
         $resList = $testObj->listTestByCode($_POST['test_code']);
         echo json_encode($resList);
         break;
-    case 'admin/allow-test':
+    case 'admin/list-test-response':
         include_once("../Test.php");
         $_POST['user_type'] = 1;
-        $resList = $testObj->changeStatusAllow($_POST);
+        $resList = $testObj->listTestResponse($_POST);
         echo json_encode($resList);
         break;
 }

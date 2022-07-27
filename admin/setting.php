@@ -20,7 +20,7 @@ include('snippet/side-header.php')
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-9 col-sm-8 grid-margin  grid-margin-lg-0">
-                                                fsdfsdf
+                                              
                                             </div>
                                         </div>
                                     </div>

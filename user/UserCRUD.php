@@ -56,7 +56,8 @@ class UserCRUD extends MySQL
     function userTestSubmit($data)
     {
         include_once("../admin/Questions.php");
-
+        $testData = $this->listTestByTestcode($data['test_id']);
+        $testMarks = (isset($testData['data'][0]['test_marks']) && $testData['data'][0]['test_marks'] != '') ? $testData['data'][0]['test_marks'] : 1;
         $this->response = [];
         $this->allQuestion = [];
         $this->total_q = 0;
@@ -82,16 +83,18 @@ class UserCRUD extends MySQL
                     sort($given_ans);
                     if ($given_ans == $correct_answer) {
                         $this->correct_q++;
-                        $this->obtain_mark += 1;
+                        $this->obtain_mark += $testMarks;
+                        $this->allQuestion[$i]['is_correct'] = "Yes";
                     } else {
                         $this->wrong_q++;
+                        $this->allQuestion[$i]['is_correct'] = "No";
                     }
                     $this->answered_q++;
                 } else {
                     $this->not_answered_q++;
                 }
             }
-
+            //echo"<pre>";print_r($this->allQuestion);echo"</pre>";die("done");
             $score = ['test_code' => $_SESSION['test_code'], 'email_id' => $_SESSION['email'], 'total_q' => $this->total_q, 'not_answered_q' => $this->not_answered_q, 'answered_q' => $this->answered_q, 'correct_q' => $this->correct_q, 'wrong_q' => $this->wrong_q, 'obtain_mark' => $this->obtain_mark];
             $this->resQuestion = $this->Insert($this->table_score, $score);
             $this->score_id = $this->ConnectionLastInsertId();
