@@ -40,10 +40,13 @@ function renderList(data) {
             c = 1;
         for (i = 0; i < data.length; i++) {
             var topic = $("<div/>").html(data[i].topic).text();
+            var passCode = $("<div/>").html(data[i].passcode).text();
+            console.log(passCode);
             html += `<tr class="render-count-${data[i].test_id}">
                         <td><input type="hidden" class="test_ids" name="test_ids" value="${data[i].test_id}"> #${c}</td>
                         <td class=""> <a href="${admin_url}test/view-test.php?test=${btoa(data[i].test_code)}"> ${truncate(topic,12)}</a></td>
                         <td class="" data-bs-toggle="tooltip" data-bs-placement="top"> ${data[i].test_code}</td>
+                        <td class="" data-bs-toggle="tooltip" data-bs-placement="top" ssss> ${passCode}</td>
                         <td><input type="hidden" class="cpytxt" value="${base_url}user/login.php?test=${btoa(data[i].test_code)}"> <a href="javascript:void(0)"  <i class="mdi mdi-content-copy"></i></a></td>
                         <td>
                             <div class="form-switch">

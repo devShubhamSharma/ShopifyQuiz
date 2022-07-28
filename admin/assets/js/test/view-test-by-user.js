@@ -145,7 +145,7 @@ function renderTestResponse(data) {
             }
 
             html += `
-            <div class="card-footer">Correct Answer: ${  myGFG(answer_option)}</div>
+            <div class="card-footer"><strong>Correct Answer: ${  myGFG(answer_option)}</strong></div>
             
             </div>`;
 

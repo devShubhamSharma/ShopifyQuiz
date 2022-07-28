@@ -44,7 +44,8 @@ class Test extends MySQL
             $email_group = array_count_values($email_group);
             $is_allow_count = 0;
             foreach ($email_group as $key => $mail) {
-                $sql = "SELECT * FROM `tbl_score` WHERE email_id='" . $key . "' ORDER BY score_id DESC LIMIT 1";
+               // $sql = "SELECT * FROM `tbl_score` WHERE email_id='" . $key . "' ORDER BY score_id DESC LIMIT 1";
+                $sql = "SELECT * FROM `tbl_score` WHERE test_code='" . $testcode . "' AND email_id='" . $key . "' ORDER BY score_id DESC LIMIT 1";
                 $resSql = $this->Execute($sql);
                 $this->is_allow[$is_allow_count] = $resSql[0]['is_allow_retest'];
                 $this->is_allow_id[$is_allow_count] = $resSql[0]['score_id'];
@@ -81,7 +82,7 @@ class Test extends MySQL
         $this->response = [];
         $this->testData = [];
         try {
-            $this->res = $this->Select($this->table_test, ['test_code' => $data['test_code']]);
+            $this->res = $this->Select($this->table_test, [0 =>['test_code' => $data['test_code']], 1 =>['topic' => $data['topic']]],'','', "OR");
             if (count($this->res) > 0) {
                 return $this->response = [
                     "status" => "error",
@@ -169,6 +170,10 @@ class Test extends MySQL
                 ];
             }
             $this->q_status = ($this->resQuestUpdate[0]['is_allow_retest'] == 1) ? 0 : 1;
+
+            // $sql = "SELECT * FROM `tbl_score` WHERE test_code='" . $testcode . "' AND email_id='" . $_SESSION['email'] . "' ORDER BY score_id DESC LIMIT 1";
+            //$resSql = $this->Execute($sql);
+
             $res = $this->Update($this->table_score, ['is_allow_retest' =>  $this->q_status], ['score_id' => $data['id']]);
             if ($res) {
                 $this->response = [
@@ -227,7 +232,7 @@ class Test extends MySQL
                 $this->table_score_details,
                 ['score_id' => $data['score_id']]
             );
-            //echo "<pre>";print_r(unserialize(html_entity_decode($this->data[0]['question_response'])));echo"</pre>";
+            
             $this->data['question_response'] = unserialize(html_entity_decode($this->data[0]['question_response']));
             $this->response = [
                 "status" => "success",

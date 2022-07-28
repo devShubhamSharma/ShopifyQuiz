@@ -5,6 +5,7 @@ include_once("../admin/Questions.php");
 include_once("../user/UserCRUD.php");
 $data = $questionsObj->listQuestionForTest();
 $testData = $UserObj->listTestByTestcode($_SESSION['test_code']);
+
 $checkTest = $UserObj->checkTestByUser($_SESSION['test_code']);
 if(count($checkTest['data']) > 0 && $checkTest['data'][0]['is_allow_retest'] ==0){
     $_SESSION['test_capture'] ="Test already taken.";

@@ -94,7 +94,6 @@ class UserCRUD extends MySQL
                     $this->not_answered_q++;
                 }
             }
-            //echo"<pre>";print_r($this->allQuestion);echo"</pre>";die("done");
             $score = ['test_code' => $_SESSION['test_code'], 'email_id' => $_SESSION['email'], 'total_q' => $this->total_q, 'not_answered_q' => $this->not_answered_q, 'answered_q' => $this->answered_q, 'correct_q' => $this->correct_q, 'wrong_q' => $this->wrong_q, 'obtain_mark' => $this->obtain_mark];
             $this->resQuestion = $this->Insert($this->table_score, $score);
             $this->score_id = $this->ConnectionLastInsertId();

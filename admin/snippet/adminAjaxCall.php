@@ -76,6 +76,12 @@ switch ($action) {
         echo json_encode($resList);
         break;
 
+    case 'admin/allow-test':
+        include_once("../Test.php");
+        $_POST['user_type'] = 1;
+        $resList = $testObj->changeStatusAllow($_POST);
+        echo json_encode($resList);
+        break;
     case 'admin/list-test-by-code':
         include_once("../Test.php");
         $_POST['user_type'] = 1;

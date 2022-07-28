@@ -30,6 +30,7 @@
  <script src="<?= $config->admin_assets_url . 'vendors/js/vendor.bundle.base.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'js/hoverable-collapse.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'js/misc.js' ?>"></script>
+ <script src="<?= $config->admin_assets_url . 'js/off-canvas.js' ?>"></script>
  <script src="<?= $config->admin_assets_url . 'js/dashboard.js' ?>"></script>
  <script>
      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

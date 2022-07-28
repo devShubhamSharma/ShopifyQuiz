@@ -2,12 +2,8 @@
 $config = include('../../config.php');
 include('../snippet/header.php');
 include('../snippet/side-header.php');
-include_once("../Test.php");
-$data = $testObj->listAllTest();
-$testData = $data['data'];
-// echo "<pre>";
-// print_r($data);
-//echo "</pre>";
+//include_once("../Test.php");
+
 ?>
 <div class="content-wrapper">
     <div class="d-xl-flex justify-content-between align-items-start">

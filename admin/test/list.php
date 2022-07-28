@@ -2,12 +2,10 @@
 $config = include('../../config.php');
 include('../snippet/header.php');
 include('../snippet/side-header.php');
-include_once("../Test.php");
-$data = $testObj->listAllTest();
-$testData = $data['data'];
-// echo "<pre>";
-// print_r($data);
-//echo "</pre>";
+//include_once("../Test.php");
+// $data = $testObj->listAllTest();
+// $testData = $data['data'];
+
 ?>
 <div class="content-wrapper">
     <div class="d-xl-flex justify-content-between align-items-start">
@@ -55,6 +53,7 @@ $testData = $data['data'];
                                                 <th style="width:1%;"><input class="" type="hidden" name="test_ids_parent" id="test_ids_parent"> # </th>
                                                 <th style="width:90%;">Test</th>
                                                 <th style="width:2%;">Code</th>
+                                                <th style="width:2%;">Pass Code</th>
                                                 <th style="width:1%;">Url</th>
                                                 <th style="width:2%;">Status</th>
                                                 <!-- <th colspan="2" class="text-center" style="width:3%;">Action</th> -->
