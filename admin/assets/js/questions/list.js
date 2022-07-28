@@ -1,5 +1,5 @@
 getQuestionList();
-var base_url = 'http://localhost/ShopifyQuiz/admin/';
+var base_url = window.settings.base_url;
 
 function getQuestionList() {
     let thisInst = $(this);
