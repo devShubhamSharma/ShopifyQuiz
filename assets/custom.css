@@ -1,0 +1,8 @@
+body {
+    background-color: aliceblue;
+}
+
+.disabled-div {
+    pointer-events: none;
+    opacity: 0.9;
+}
