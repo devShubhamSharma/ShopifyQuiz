@@ -18,6 +18,16 @@ $config = include("../config.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      
     <title>Quiz</title>
+    <script>
+                window.settings = {
+                        'host': `<?= $config->host ?>`,
+                        'base_url': `<?= $config->base_url ?>`,
+                        'root_url': `<?= $config->root_url ?>`,
+                        'assets_url': `<?= $config->assets_url ?>`,
+                        'admin_assets_url': `<?= $config->admin_assets_url ?>`,
+                        'admin_url': `<?= $config->admin_url ?>`,
+                }
+        </script>
 </head>
 
 <body>

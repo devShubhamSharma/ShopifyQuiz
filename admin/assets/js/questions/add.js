@@ -1,3 +1,4 @@
+var base_url = window.settings.base_url;
 let questionErr = "",
     password = "",
     emailErr = false,
@@ -45,7 +46,7 @@ $(document).on("click", ".add-question", function(e) {
     if (error_form === false) {
         $.ajax({
             method: "POST",
-            url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+            url: base_url + "admin/snippet/adminAjaxCall.php",
             data: formData,
             beforeSend: function() {
                 thisInst.prop("disabled", true);

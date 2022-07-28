@@ -1,3 +1,4 @@
+var base_url = window.settings.base_url;
 $(document).on("click", ".view-test-responsive", function(e) {
     var thisInst = $(this);
     let score_id = $(this).attr("data-score-id");
@@ -6,7 +7,7 @@ $(document).on("click", ".view-test-responsive", function(e) {
     }
     $.ajax({
         method: "POST",
-        url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+        url: base_url + "admin/snippet/adminAjaxCall.php",
         data: { action: "admin/list-test-response", score_id: score_id },
         beforeSend: function() {
             $(".card-body").addClass("disabled-div");

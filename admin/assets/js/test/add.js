@@ -1,3 +1,4 @@
+var base_url = window.settings.base_url;
 var numberRegex = /^\d+$/;
 let questionErr = "",
     password = "",
@@ -30,7 +31,7 @@ $(document).on("click", ".create-test", function(e) {
     if (error_form === false) {
         $.ajax({
             method: "POST",
-            url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+            url: base_url + "admin/snippet/adminAjaxCall.php",
             data: formData,
             beforeSend: function() {
                 thisInst.prop("disabled", true);

@@ -2,7 +2,7 @@
  * prevent reloading
  *
  */
-
+var base_url = window.settings.base_url;
 let email = "",
     passcode = "",
     emailErr = false,
@@ -18,7 +18,7 @@ $(document).on("click", "#submit-test-login-form", function(e) {
         let formData = $("#test-login-form").serialize();
         $.ajax({
             method: "POST",
-            url: "/ShopifyQuiz/user/ajaxcall.php",
+            url: base_url + "user/ajaxcall.php",
             data: formData,
             beforeSend: function() {
                 thisInst.prop("disabled", true);

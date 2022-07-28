@@ -2,7 +2,7 @@
  * prevent reloading
  *
  */
-var base_url = window.settings.admin_url
+var base_admin_url = window.settings.admin_url
 let email = "",
     password = "",
     emailErr = false,
@@ -18,7 +18,7 @@ $(document).on("click", "#submit_admin_login_form", function(e) {
         let formData = $("#admin_login_form").serialize();
         $.ajax({
             method: "POST",
-            url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+            url: base_admin_url + "snippet/adminAjaxCall.php",
             data: formData,
             beforeSend: function() {
                 thisInst.prop("disabled", true);
@@ -29,7 +29,7 @@ $(document).on("click", "#submit_admin_login_form", function(e) {
                 data = JSON.parse(data);
                 thisInst.prop("disabled", true).html("Login success...");
                 if (data.status == "success") {
-                    window.location = base_url + "dashboard.php";
+                    window.location = base_admin_url + "dashboard.php";
                 } else {
                     $(".login-error")
                         .html(data.message)

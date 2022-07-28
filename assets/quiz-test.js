@@ -1,3 +1,4 @@
+var base_url = window.settings.base_url;
 $(document).on("click", ".submit-test", function(e) {
     e.preventDefault();
     submitTest();
@@ -16,7 +17,7 @@ function submitTest() {
     var formData = $("#test-form-submit").serializeArray();
     $.ajax({
         method: "POST",
-        url: "/ShopifyQuiz/user/ajaxcall.php",
+        url: base_url + "user/ajaxcall.php",
         data: formData,
         success: function(data) {
             data = JSON.parse(data);

@@ -1,12 +1,12 @@
-gettestList();
 var admin_url = window.settings.admin_url;
 var base_url = window.settings.base_url;
+gettestList();
 
 function gettestList() {
     let thisInst = $(this);
     $.ajax({
         method: "POST",
-        url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+        url: base_url + "admin/snippet/adminAjaxCall.php",
         data: { action: "admin/list-test" },
         beforeSend: function() {
             $(".card-body").addClass('disabled-div');
@@ -108,7 +108,7 @@ $(document).on("click", "[data-change-status-test]", function(e) {
     var thisInst = $(this);
     $.ajax({
         method: "POST",
-        url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+        url: base_url + "admin/snippet/adminAjaxCall.php",
         data: { action: "admin/change-status-test", id: $(this).attr("change-status-id") },
         beforeSend: function() {
             $(".card-body").addClass('disabled-div');
@@ -154,7 +154,7 @@ $(document).on("click", ".change-status-all", function(e) {
     }
     $.ajax({
         method: "POST",
-        url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+        url: base_url + "admin/snippet/adminAjaxCall.php",
         data: { action: "admin/change-status-test-all", id: checked_ids, update_type: thisInst.attr('data-status-action') },
         beforeSend: function() {
             $(".card-body").addClass('disabled-div');
@@ -211,7 +211,7 @@ $(document).on("click", ".confirm-delete", function(e) {
     }
     $.ajax({
         method: "POST",
-        url: "/ShopifyQuiz/admin/snippet/adminAjaxCall.php",
+        url: base_url + "admin/snippet/adminAjaxCall.php",
         data: { action: "admin/delete-test", id: checked_ids },
         beforeSend: function() {
             $(".card-body").addClass('disabled-div');
